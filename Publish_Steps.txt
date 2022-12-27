@@ -1,0 +1,12 @@
+cd C:\Users\david.jarrett\OneDrive - The Content Group (TCG) Limited\Desktop\Python\Cost_Calc
+
+streamlit run Cost_Calculator.py
+
+pipreqs ./
+git init (for first time only)
+heroku create hbac-records
+
+heroku login
+git add .
+git commit -m "initial commit"
+git push heroku master
