@@ -1,4 +1,4 @@
-cd C:\Users\david.jarrett\OneDrive - The Content Group (TCG) Limited\Desktop\Python\Cost_Calc
+cd C:\Users\david.jarrett\OneDrive - The Content Group (TCG) Limited\Desktop\Python\Cost_Calc_v2
 
 streamlit run Cost_Calculator.py
 
