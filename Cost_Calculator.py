@@ -204,10 +204,18 @@ if authentication_status:
     this_month = int(t.strftime("%m"))
     this_day = int(t.strftime("%d"))
     daysinmonth = calendar.monthrange(this_year, this_month)[1]
+
+    if this_month == 1:
+        previous_period = str(this_year - 1) + '-12'
+    else:
+        previous_period = str(this_year) + '-' + str(this_month - 1)
+    previous_period = [previous_period]
+    #print(previous_period)
+
     #print(this_day)
     this_year = str(this_year)
     this_month = str(this_month)
-    this_period = this_year+ '-' + this_month
+    this_period = this_year + '-' + this_month
     #this_period = this_period.astype(str)
     this_period = [this_period]
     #print(this_period)
@@ -336,11 +344,12 @@ if authentication_status:
     average_by_month_99 = average_by_month_99[~average_by_month_99["Period"].isin(this_period)]
     average_by_month_99 = average_by_month_99[~average_by_month_99["Period"].isin(optionsperiods)]
     average_by_month_99 = average_by_month_99[~average_by_month_99["Category"].isin(options77)]
+    #print(average_by_month_99)
     average_by_month_grouped_99 = (
         average_by_month_99.groupby(by=["Period"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
     )
     #print(average_by_month_grouped_99)
-    average_by_month_grouped_99_Previous = average_by_month_grouped_99[:-1]
+    average_by_month_grouped_99_Previous = average_by_month_grouped_99[~average_by_month_grouped_99["Period"].isin(previous_period)]
     #print(average_by_month_grouped_99_Previous)
 
     if average_by_month_grouped_99.empty:
@@ -348,7 +357,11 @@ if authentication_status:
         Average_Mortgage_Capital = "£0.00"
     else:
         Average_spend = average_by_month_grouped_99["Amount"].mean()
+
         Average_spend_Previous = average_by_month_grouped_99_Previous["Amount"].mean()
+
+        #print(Average_spend)
+        #print(Average_spend_Previous)
 
         #Mortgage_Capital = [1841.74,1839.79,1837.86,1835.91,1833.98]
         options77_cap = ['Mortgage Capital']

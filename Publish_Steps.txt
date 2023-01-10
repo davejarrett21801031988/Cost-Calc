@@ -4,9 +4,7 @@ streamlit run Cost_Calculator.py
 
 pipreqs ./
 git init (for first time only)
-heroku create hbac-records
 
-heroku login
 git add .
 git commit -m "initial commit"
-git push heroku master
+git push -u origin master
