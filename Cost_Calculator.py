@@ -614,7 +614,7 @@ if authentication_status:
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
-            st.text("Guildford Flat Profit (FY 22/23):")
+            st.text("Guildford Flat Profit (since Apr 22):")
             st.subheader(f"{amount_by_month_grouped_flat_figure}")
         with right_column:
             st.text("Average Shared Spend per Month:")
