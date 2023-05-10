@@ -334,7 +334,8 @@ if authentication_status:
     #print(amount_by_month_grouped_2)
 
     amount_by_month_grouped_flat = amount_by_month_grouped[amount_by_month_grouped["Category"].isin(options77)]
-    amount_by_month_grouped_flat_figure = -amount_by_month_grouped_flat["Amount"].sum()
+    GuildfordStart = 29273.753
+    amount_by_month_grouped_flat_figure = -amount_by_month_grouped_flat["Amount"].sum() + GuildfordStart
     amount_by_month_grouped_flat_figure = "£"+"{:,.2f}".format(amount_by_month_grouped_flat_figure)
     if amount_by_month_grouped_flat_figure == '£-0.00':
         amount_by_month_grouped_flat_figure = '£0.00'
@@ -629,7 +630,7 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Credit Card Debt:")
-            st.subheader(f"£7,000")
+            st.subheader(f"£6,000")
         with right_column:
             st.text("Savings:")
             st.subheader(f"£4,000")
