@@ -481,23 +481,23 @@ if authentication_status:
     df2_car = pd.DataFrame(columns=['Mileage'])
     #print(df2_car)
 
-#    for key in data_car.keys():
-#        Car = key
-#        #print(Transaction_ID)
-#        jsondata = pd.json_normalize(data_car[Car])
-#        jsondata["Car"] = Car
-#        #print(jsondata)
-#        df3_car = pd.concat([jsondata, df2_car], ignore_index=True)
-#        df2_car = df3_car
-#
-#    #print(df3_car)
-#
-#    cars_1 = pd.DataFrame(columns=['Car','Registration','Registered Date','Purchase Date','Purchase Days','Registered Days','Starting Mileage (Us)','Our Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Estimated Value','Today'])
-#    cars_1['Car'] = ['Mazda CX-5','Peugeot 308','Mercedes A45','Mazda MX-5','VW Polo']
-#    cars_1['Registration'] = ['HT68 JZR','EF15 UAC','HF64 PWX','HN13 LZW','RV60 VWD']
-#    cars_1['Registered Date'] = [date(2019,1,26),date(2015,6,19),date(2014,9,26),date(2013,6,30),date(2010,9,4)]
-#    cars_1['Purchase Date'] = [date(2019,1,26),date(2019,2,1),date(2016,12,13),date(2015,6,13),date(2013,9,14)]
-#    cars_1['Today'] = [date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
+    for key in data_car.keys():
+        Car = key
+        #print(Transaction_ID)
+        jsondata = pd.json_normalize(data_car[Car])
+        jsondata["Car"] = Car
+        #print(jsondata)
+        df3_car = pd.concat([jsondata, df2_car], ignore_index=True)
+        df2_car = df3_car
+
+    #print(df3_car)
+
+    cars_1 = pd.DataFrame(columns=['Car','Registration','Registered Date','Purchase Date','Purchase Days','Registered Days','Starting Mileage (Us)','Our Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Estimated Value','Today'])
+    cars_1['Car'] = ['Mazda CX-5','Peugeot 308','Mercedes A45','Mazda MX-5','VW Polo']
+    cars_1['Registration'] = ['HT68 JZR','EF15 UAC','HF64 PWX','HN13 LZW','RV60 VWD']
+    cars_1['Registered Date'] = [date(2019,1,26),date(2015,6,19),date(2014,9,26),date(2013,6,30),date(2010,9,4)]
+    cars_1['Purchase Date'] = [date(2019,1,26),date(2019,2,1),date(2016,12,13),date(2015,6,13),date(2013,9,14)]
+    cars_1['Today'] = [date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
 #    cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
 #    print(cars_1['Registered Days'])
 #    cars_1['Registered Days'] = (cars_1['Registered Days'].dt.days)/365
