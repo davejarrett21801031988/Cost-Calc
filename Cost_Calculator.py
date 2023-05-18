@@ -16,7 +16,7 @@ import numpy_financial as npf
 import numpy as np
 from collections import OrderedDict
 from dateutil.relativedelta import *
-import plotly.graph_objects as go
+import plotly.graph_objects as go 
 
 if not firebase_admin._apps:
     cred = credentials.Certificate('serviceAK.json')
