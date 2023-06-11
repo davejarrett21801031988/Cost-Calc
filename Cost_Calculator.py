@@ -500,106 +500,106 @@ if authentication_status:
     cars_1['Today'] = [date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
     cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
     #print(cars_1['Registered Days'])
-#    cars_1['Registered Days'] = (cars_1['Registered Days'].dt.days)/365
-#    print(cars_1['Registered Days'])
-#    cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
-#    cars_1['Purchase Days'] = (cars_1['Purchase Days Orig'].dt.days)/365
-#    cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
-#    cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].dt.days)/30.42
-#    #print(today)
-#    #cars_1['Registered Days'] = today - cars_1['Registered Year']
-#    cars_1['Starting Mileage (Us)'] = [5,32460,11996,20000,23016]
-#    cars_1 = cars_1.merge(df2_car, on='Car', how='left')
-#    cars_1['Mileage'] = cars_1['Mileage'].astype(int)
-#    cars_1['Our Mileage'] = cars_1['Mileage'] - cars_1['Starting Mileage (Us)']
-#    cars_1['Annual Mileage (Us)'] = cars_1['Our Mileage'] / cars_1['Purchase Days']
-#    cars_1['Annual Mileage (Total)'] = cars_1['Mileage'] / cars_1['Registered Days']
-#    cars_1['Estimated/Sold Value'] = [18000,5000,1778.04,6800,3000]
-#    cars_1['Annual Mileage (Total)'] = cars_1['Annual Mileage (Total)'].map('{:,.1f}'.format)
-#    cars_1['Annual Mileage (Us)'] = cars_1['Annual Mileage (Us)'].map('{:,.1f}'.format)
-#        #print(cars_1)
-#
-#    amount_by_month_cars_1 = Spend_df[["Period","Category","Item","Amount"]]
-#    amount_by_month_cars_2 = (
-#        amount_by_month_cars_1.groupby(by=["Period","Category","Item"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
-#    )
-#    options_cars = ["Cars"]
-#    amount_by_month_cars_3 = amount_by_month_cars_2[amount_by_month_cars_2["Category"].isin(options_cars)]
-#    amount_by_month_cars_4 = amount_by_month_cars_3[~amount_by_month_cars_3["Period"].isin(this_period)]
-#    amount_by_month_cars_5 = (
-#        amount_by_month_cars_4.groupby(by=["Item"],as_index=False).sum(["Amount"])
-#    )
-#    amount_by_month_cars_5_adj_308 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
-#    amount_by_month_cars_5_adj_308['Car'] = ['Peugeot 308','Peugeot 308','Peugeot 308','Peugeot 308','Peugeot 308']
-#    amount_by_month_cars_5_adj_308['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
-#    amount_by_month_cars_5_adj_308['Adj_Amount'] = [6950,59.6,0,1190.74,1780.73]
-#
-#    amount_by_month_cars_5_adj_A45 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
-#    amount_by_month_cars_5_adj_A45['Car'] = ['Mercedes A45','Mercedes A45','Mercedes A45','Mercedes A45','Mercedes A45']
-#    amount_by_month_cars_5_adj_A45['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
-#    amount_by_month_cars_5_adj_A45['Adj_Amount'] = [13755.36,0,407.5,1885.35,1305.86]
-#
-#    amount_by_month_cars_5_adj_MX5 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
-#    amount_by_month_cars_5_adj_MX5['Car'] = ['Mazda MX-5','Mazda MX-5','Mazda MX-5','Mazda MX-5','Mazda MX-5']
-#    amount_by_month_cars_5_adj_MX5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
-#    amount_by_month_cars_5_adj_MX5['Adj_Amount'] = [16599.76,34.67,882.5,1449.78,1846.16]
-#
-#    amount_by_month_cars_5_adj_Polo = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
-#    amount_by_month_cars_5_adj_Polo['Car'] = ['VW Polo','VW Polo','VW Polo','VW Polo','VW Polo']
-#    amount_by_month_cars_5_adj_Polo['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
-#    amount_by_month_cars_5_adj_Polo['Adj_Amount'] = [10154.44,64.61,245.01,790.32,887.27]
-#
-#    amount_by_month_cars_5_adj_cx5 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
-#    amount_by_month_cars_5_adj_cx5['Car'] = ['Mazda CX-5','Mazda CX-5','Mazda CX-5','Mazda CX-5','Mazda CX-5']
-#    amount_by_month_cars_5_adj_cx5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
-#    amount_by_month_cars_5_adj_cx5['Adj_Amount'] = [29021.28,0,655,1163.78,664.02]
-#    amount_by_month_cars_6_adj = pd.concat([amount_by_month_cars_5_adj_cx5, amount_by_month_cars_5_adj_308, amount_by_month_cars_5_adj_A45, amount_by_month_cars_5_adj_MX5, amount_by_month_cars_5_adj_Polo], ignore_index=True)
-#
-#    options_cars = ['Cars']
-#    df_selection_cars = df_selection[df_selection["Category"].isin(options_cars)]
-#    df_selection_cars['Car'] = ''
-#    df_selection_cars['Sub-Category'] = ''
-#    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Peugeot')==True , 'Car'] = 'Peugeot 308'
-#    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Mazda')==True , 'Car'] = 'Mazda CX-5'
-#    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Payments')==True , 'Sub-Category'] = 'Payments'
-#    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Recovery')==True , 'Sub-Category'] = 'Recovery'
-#    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Tax')==True , 'Sub-Category'] = 'Tax'
-#    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Insurance')==True , 'Sub-Category'] = 'Insurance'
-#    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Servicing')==True , 'Sub-Category'] = 'Servicing and Fixes'
-#    amount_by_month_cars_10_adj = df_selection_cars[["Car","Amount"]]
-#    amount_by_month_cars_11_adj = (
-#        amount_by_month_cars_10_adj.groupby(by=["Car"],as_index=False).sum(["Amount"])
-#    )
-#
-#    amount_by_month_cars_100_adj = df_selection_cars[["Car","Sub-Category","Amount"]]
-#    amount_by_month_cars_110_adj = (
-#        amount_by_month_cars_100_adj.groupby(by=["Car","Sub-Category"],as_index=False).sum(["Amount"])
-#    )
-#    amount_by_month_cars_60_adj = amount_by_month_cars_6_adj.merge(amount_by_month_cars_110_adj, on=['Car','Sub-Category'], how='left')
-#    amount_by_month_cars_60_adj['Total Amount'] = amount_by_month_cars_60_adj['Amount'].fillna(0) + amount_by_month_cars_60_adj['Adj_Amount'].fillna(0)
-#    amount_by_month_cars_61_adj = amount_by_month_cars_60_adj[["Car","Sub-Category","Total Amount"]]
-#    amount_by_month_cars_600_adj = pd.pivot_table(amount_by_month_cars_61_adj, values = 'Total Amount', index=['Sub-Category'], columns = 'Car').reset_index()
-#    amount_by_month_cars_600_adj["Mazda CX-5"] = amount_by_month_cars_600_adj["Mazda CX-5"].map('£{:,.2f}'.format)
-#    amount_by_month_cars_600_adj["Mazda MX-5"] = amount_by_month_cars_600_adj["Mazda MX-5"].map('£{:,.2f}'.format)
-#    amount_by_month_cars_600_adj["Peugeot 308"] = amount_by_month_cars_600_adj["Peugeot 308"].map('£{:,.2f}'.format)
-#    amount_by_month_cars_600_adj["Mercedes A45"] = amount_by_month_cars_600_adj["Mercedes A45"].map('£{:,.2f}'.format)
-#    amount_by_month_cars_600_adj["VW Polo"] = amount_by_month_cars_600_adj["VW Polo"].map('£{:,.2f}'.format)
-#        #print(amount_by_month_cars_600_adj)
-#
-#    amount_by_month_cars_7_adj = (
-#        amount_by_month_cars_6_adj.groupby(by=["Car"],as_index=False).sum(["Adj_Amount"])
-#    )
-#    cars_1 = cars_1.merge(amount_by_month_cars_7_adj, on='Car', how='left')
-#    cars_2 = cars_1.merge(amount_by_month_cars_11_adj, on='Car', how='outer')
-#        #cars_2['Total Cost'] = cars_2['Adj_Amount']
-#    cars_2['Total Cost'] = cars_2['Adj_Amount'].fillna(0) + cars_2['Amount'].fillna(0)
-#        #print(cars_2)
-#    cars_2['Monthly Cost'] = cars_2['Total Cost']/cars_1['Purchase Months']
-#    cars_2['Monthly Cost (after Selling)'] = (cars_2['Total Cost']-cars_1['Estimated/Sold Value'])/cars_1['Purchase Months']
-#    cars_2['Total Cost'] = cars_2['Total Cost'].map('£{:,.2f}'.format)
-#    cars_2['Monthly Cost'] = cars_2['Monthly Cost'].map('£{:,.2f}'.format)
-#    cars_2['Estimated/Sold Value'] = cars_2['Estimated/Sold Value'].map('£{:,.2f}'.format)
-#    cars_2['Monthly Cost (after Selling)'] = cars_2['Monthly Cost (after Selling)'].map('£{:,.2f}'.format)
+    cars_1['Registered Days'] = (cars_1['Registered Days'].dt.days)/365
+    print(cars_1['Registered Days'])
+    cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
+    cars_1['Purchase Days'] = (cars_1['Purchase Days Orig'].dt.days)/365
+    cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
+    cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].dt.days)/30.42
+    #print(today)
+    #cars_1['Registered Days'] = today - cars_1['Registered Year']
+    cars_1['Starting Mileage (Us)'] = [5,32460,11996,20000,23016]
+    cars_1 = cars_1.merge(df2_car, on='Car', how='left')
+    cars_1['Mileage'] = cars_1['Mileage'].astype(int)
+    cars_1['Our Mileage'] = cars_1['Mileage'] - cars_1['Starting Mileage (Us)']
+    cars_1['Annual Mileage (Us)'] = cars_1['Our Mileage'] / cars_1['Purchase Days']
+    cars_1['Annual Mileage (Total)'] = cars_1['Mileage'] / cars_1['Registered Days']
+    cars_1['Estimated/Sold Value'] = [18000,5000,1778.04,6800,3000]
+    cars_1['Annual Mileage (Total)'] = cars_1['Annual Mileage (Total)'].map('{:,.1f}'.format)
+    cars_1['Annual Mileage (Us)'] = cars_1['Annual Mileage (Us)'].map('{:,.1f}'.format)
+        #print(cars_1)
+
+    amount_by_month_cars_1 = Spend_df[["Period","Category","Item","Amount"]]
+    amount_by_month_cars_2 = (
+        amount_by_month_cars_1.groupby(by=["Period","Category","Item"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
+    )
+    options_cars = ["Cars"]
+    amount_by_month_cars_3 = amount_by_month_cars_2[amount_by_month_cars_2["Category"].isin(options_cars)]
+    amount_by_month_cars_4 = amount_by_month_cars_3[~amount_by_month_cars_3["Period"].isin(this_period)]
+    amount_by_month_cars_5 = (
+        amount_by_month_cars_4.groupby(by=["Item"],as_index=False).sum(["Amount"])
+    )
+    amount_by_month_cars_5_adj_308 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
+    amount_by_month_cars_5_adj_308['Car'] = ['Peugeot 308','Peugeot 308','Peugeot 308','Peugeot 308','Peugeot 308']
+    amount_by_month_cars_5_adj_308['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
+    amount_by_month_cars_5_adj_308['Adj_Amount'] = [6950,59.6,0,1190.74,1780.73]
+
+    amount_by_month_cars_5_adj_A45 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
+    amount_by_month_cars_5_adj_A45['Car'] = ['Mercedes A45','Mercedes A45','Mercedes A45','Mercedes A45','Mercedes A45']
+    amount_by_month_cars_5_adj_A45['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
+    amount_by_month_cars_5_adj_A45['Adj_Amount'] = [13755.36,0,407.5,1885.35,1305.86]
+
+    amount_by_month_cars_5_adj_MX5 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
+    amount_by_month_cars_5_adj_MX5['Car'] = ['Mazda MX-5','Mazda MX-5','Mazda MX-5','Mazda MX-5','Mazda MX-5']
+    amount_by_month_cars_5_adj_MX5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
+    amount_by_month_cars_5_adj_MX5['Adj_Amount'] = [16599.76,34.67,882.5,1449.78,1846.16]
+
+    amount_by_month_cars_5_adj_Polo = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
+    amount_by_month_cars_5_adj_Polo['Car'] = ['VW Polo','VW Polo','VW Polo','VW Polo','VW Polo']
+    amount_by_month_cars_5_adj_Polo['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
+    amount_by_month_cars_5_adj_Polo['Adj_Amount'] = [10154.44,64.61,245.01,790.32,887.27]
+
+    amount_by_month_cars_5_adj_cx5 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
+    amount_by_month_cars_5_adj_cx5['Car'] = ['Mazda CX-5','Mazda CX-5','Mazda CX-5','Mazda CX-5','Mazda CX-5']
+    amount_by_month_cars_5_adj_cx5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
+    amount_by_month_cars_5_adj_cx5['Adj_Amount'] = [29021.28,0,655,1163.78,664.02]
+    amount_by_month_cars_6_adj = pd.concat([amount_by_month_cars_5_adj_cx5, amount_by_month_cars_5_adj_308, amount_by_month_cars_5_adj_A45, amount_by_month_cars_5_adj_MX5, amount_by_month_cars_5_adj_Polo], ignore_index=True)
+
+    options_cars = ['Cars']
+    df_selection_cars = df_selection[df_selection["Category"].isin(options_cars)]
+    df_selection_cars['Car'] = ''
+    df_selection_cars['Sub-Category'] = ''
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Peugeot')==True , 'Car'] = 'Peugeot 308'
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Mazda')==True , 'Car'] = 'Mazda CX-5'
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Payments')==True , 'Sub-Category'] = 'Payments'
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Recovery')==True , 'Sub-Category'] = 'Recovery'
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Tax')==True , 'Sub-Category'] = 'Tax'
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Insurance')==True , 'Sub-Category'] = 'Insurance'
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Servicing')==True , 'Sub-Category'] = 'Servicing and Fixes'
+    amount_by_month_cars_10_adj = df_selection_cars[["Car","Amount"]]
+    amount_by_month_cars_11_adj = (
+        amount_by_month_cars_10_adj.groupby(by=["Car"],as_index=False).sum(["Amount"])
+    )
+
+    amount_by_month_cars_100_adj = df_selection_cars[["Car","Sub-Category","Amount"]]
+    amount_by_month_cars_110_adj = (
+        amount_by_month_cars_100_adj.groupby(by=["Car","Sub-Category"],as_index=False).sum(["Amount"])
+    )
+    amount_by_month_cars_60_adj = amount_by_month_cars_6_adj.merge(amount_by_month_cars_110_adj, on=['Car','Sub-Category'], how='left')
+    amount_by_month_cars_60_adj['Total Amount'] = amount_by_month_cars_60_adj['Amount'].fillna(0) + amount_by_month_cars_60_adj['Adj_Amount'].fillna(0)
+    amount_by_month_cars_61_adj = amount_by_month_cars_60_adj[["Car","Sub-Category","Total Amount"]]
+    amount_by_month_cars_600_adj = pd.pivot_table(amount_by_month_cars_61_adj, values = 'Total Amount', index=['Sub-Category'], columns = 'Car').reset_index()
+    amount_by_month_cars_600_adj["Mazda CX-5"] = amount_by_month_cars_600_adj["Mazda CX-5"].map('£{:,.2f}'.format)
+    amount_by_month_cars_600_adj["Mazda MX-5"] = amount_by_month_cars_600_adj["Mazda MX-5"].map('£{:,.2f}'.format)
+    amount_by_month_cars_600_adj["Peugeot 308"] = amount_by_month_cars_600_adj["Peugeot 308"].map('£{:,.2f}'.format)
+    amount_by_month_cars_600_adj["Mercedes A45"] = amount_by_month_cars_600_adj["Mercedes A45"].map('£{:,.2f}'.format)
+    amount_by_month_cars_600_adj["VW Polo"] = amount_by_month_cars_600_adj["VW Polo"].map('£{:,.2f}'.format)
+        #print(amount_by_month_cars_600_adj)
+
+    amount_by_month_cars_7_adj = (
+        amount_by_month_cars_6_adj.groupby(by=["Car"],as_index=False).sum(["Adj_Amount"])
+    )
+    cars_1 = cars_1.merge(amount_by_month_cars_7_adj, on='Car', how='left')
+    cars_2 = cars_1.merge(amount_by_month_cars_11_adj, on='Car', how='outer')
+        #cars_2['Total Cost'] = cars_2['Adj_Amount']
+    cars_2['Total Cost'] = cars_2['Adj_Amount'].fillna(0) + cars_2['Amount'].fillna(0)
+        #print(cars_2)
+    cars_2['Monthly Cost'] = cars_2['Total Cost']/cars_1['Purchase Months']
+    cars_2['Monthly Cost (after Selling)'] = (cars_2['Total Cost']-cars_1['Estimated/Sold Value'])/cars_1['Purchase Months']
+    cars_2['Total Cost'] = cars_2['Total Cost'].map('£{:,.2f}'.format)
+    cars_2['Monthly Cost'] = cars_2['Monthly Cost'].map('£{:,.2f}'.format)
+    cars_2['Estimated/Sold Value'] = cars_2['Estimated/Sold Value'].map('£{:,.2f}'.format)
+    cars_2['Monthly Cost (after Selling)'] = cars_2['Monthly Cost (after Selling)'].map('£{:,.2f}'.format)
 
     # --- mainpage ---
     selected = option_menu(
