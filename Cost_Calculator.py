@@ -500,8 +500,10 @@ if authentication_status:
     cars_1['Today'] = [date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
     cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
     print(cars_1['Registered Days'])
+    if not pd.api.types.is_datetime64_any_dtype(cars_1['Registered Days']):
+        cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'])
     cars_1['Registered Days'] = (cars_1['Registered Days'].dt.days)/365
-#    print(cars_1['Registered Days'])
+    print(cars_1['Registered Days'])
 #    cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
 #    cars_1['Purchase Days'] = (cars_1['Purchase Days Orig'].dt.days)/365
 #    cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
