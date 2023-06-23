@@ -499,7 +499,7 @@ if authentication_status:
     cars_1['Purchase Date'] = [date(2019,1,26),date(2019,2,1),date(2016,12,13),date(2015,6,13),date(2013,9,14)]
     cars_1['Today'] = [date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
     cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
-    print(cars_1['Registered Days'])
+#    print(cars_1['Registered Days'])
 #    if not pd.api.types.is_datetime64_any_dtype(cars_1['Registered Days']):
 #        cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'])
 #    cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'], errors='coerce')
@@ -636,16 +636,16 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Credit Card Debt:")
-            st.subheader(f"£6,000")
+            st.subheader(f"£4,000")
         with right_column:
             st.text("Savings:")
-            st.subheader(f"£4,000")
+            st.subheader(f"£5,800")
         with mid_column:
             st.text("Capital in Mortgages:")
-            st.subheader(f"£576,000")
+            st.subheader(f"£560,000")
         with last:
             st.text("Joint Salary")
-            st.subheader(f"£149,000")
+            st.subheader(f"£144,000")
         #st.markdown("##")
 
         st.markdown("---")
