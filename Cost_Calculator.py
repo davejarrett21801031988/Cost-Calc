@@ -255,8 +255,8 @@ if authentication_status:
         amount_by_month_bills_4.groupby(by=["Item"],as_index=False).sum(["Amount"])
     )
     amount_by_month_bills_5_adj = pd.DataFrame(columns=['Item','Adj_Amount'])
-    amount_by_month_bills_5_adj['Item'] = ['Council Tax','TV Licence','Water','Road Fund','Internet','Gas & Electricity','Building & Contents Insurance','Amazon Prime','BT Sport','Ring','Netflix']
-    amount_by_month_bills_5_adj['Adj_Amount'] = [1980.36,92.75,161.64,0,145.76,493.41,489.39,98.75,175,49.98,0]
+    amount_by_month_bills_5_adj['Item'] = ['Council Tax','TV Licence','Water','Road Fund','Internet','Gas & Electricity','Building & Contents Insurance','Amazon Prime','BT Sport','Ring','Netflix','Firelighters and Wood']
+    amount_by_month_bills_5_adj['Adj_Amount'] = [1980.36,92.75,161.64,0,145.76,493.41,489.39,98.75,175,49.98,0,0]
     amount_by_month_bills_6 = amount_by_month_bills_5.merge(amount_by_month_bills_5_adj, on='Item', how='outer')
     amount_by_month_bills_6['Overall Amount'] = amount_by_month_bills_6['Adj_Amount'].fillna(0) + amount_by_month_bills_6['Amount'].fillna(0)
     amount_by_month_bills_7 = amount_by_month_bills_6[['Item','Overall Amount']].sort_values(by=['Overall Amount'], ascending=False)
