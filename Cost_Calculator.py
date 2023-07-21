@@ -261,7 +261,9 @@ if authentication_status:
     amount_by_month_bills_6['Overall Amount'] = amount_by_month_bills_6['Adj_Amount'].fillna(0) + amount_by_month_bills_6['Amount'].fillna(0)
     amount_by_month_bills_7 = amount_by_month_bills_6[['Item','Overall Amount']].sort_values(by=['Overall Amount'], ascending=False)
     #print(amount_by_month_bills_6)
-    amount_by_month_bills_7['Monthly Cost'] = amount_by_month_bills_7['Overall Amount'] / (periodcalc_5 + 7)
+    months_done = (periodcalc_5 + 7)
+    month_phrase = str(months_done) + str(' complete Months')
+    amount_by_month_bills_7['Monthly Cost'] = amount_by_month_bills_7['Overall Amount'] / months_done
     amount_by_month_bills_7['Overall Amount'] = amount_by_month_bills_7['Overall Amount'].map('£{:,.2f}'.format)
     amount_by_month_bills_7['Monthly Cost'] = amount_by_month_bills_7['Monthly Cost'].map('£{:,.2f}'.format)
 
@@ -679,6 +681,7 @@ if authentication_status:
 
         st.subheader("House Bills")
         st.text("Breakdown of House Bills for The Spinney since we moved in:")
+        st.text(month_phrase)
         st.table(amount_by_month_bills_7)
 
     if selected == "Add Data":
