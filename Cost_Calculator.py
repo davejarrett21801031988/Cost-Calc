@@ -641,11 +641,11 @@ if authentication_status:
             st.text("Joint CC Debt:")
             st.subheader(f"£2,000")
         with right_column:
-            st.text("Joint Savings:")
-            st.subheader(f"£7,500")
-        with mid_column:
             st.text("Dave CC Debt:")
             st.subheader(f"£7,300")
+        with mid_column:
+            st.text("Joint Savings:")
+            st.subheader(f"£7,500")
         with last:
             st.text("Joint Salary")
             st.subheader(f"£144,000")
