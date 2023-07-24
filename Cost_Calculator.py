@@ -651,6 +651,20 @@ if authentication_status:
             st.subheader(f"£7,500")
         #st.markdown("##")
 
+        left_column, right_column, mid_column, last = st.columns(4)
+        with left_column:
+            st.text("Joint Salary:")
+            st.subheader(f"£144,000")
+        with right_column:
+            st.text("Mortgages:")
+            st.subheader(f"£735,000")
+        with mid_column:
+            st.text("Capital:")
+            st.subheader(f"£560,000")
+        with last:
+            st.text("x:")
+            st.subheader(f"£0")
+
         st.markdown("---")
 
         left_column, right_column = st.columns(2)
