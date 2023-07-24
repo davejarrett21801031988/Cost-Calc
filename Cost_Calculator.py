@@ -644,11 +644,11 @@ if authentication_status:
             st.text("Dave CC Debt:")
             st.subheader(f"£7,300")
         with mid_column:
-            st.text("Joint Savings:")
+            st.text("Bathroom & Sofa:")
             st.subheader(f"£7,500")
         with last:
-            st.text("Joint Salary")
-            st.subheader(f"£144,000")
+            st.text("Joint Savings:")
+            st.subheader(f"£8,000")
         #st.markdown("##")
 
         st.markdown("---")
