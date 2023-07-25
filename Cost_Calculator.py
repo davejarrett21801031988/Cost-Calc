@@ -503,9 +503,9 @@ if authentication_status:
     cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
     cars_1['Registered Days'] = cars_1['Registered Days'].dt.days
 #    print(cars_1['Registered Days'])
-#       if not pd.api.types.is_datetime64_any_dtype(cars_1['Registered Days']):
-#    cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'])
-    cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'], errors='coerce')
+    if not pd.api.types.is_datetime64_any_dtype(cars_1['Registered Days']):
+        cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'])
+    #cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'], errors='coerce')
     cars_1['Registered Days'] = cars_1['Registered Days']/365
 #    print(cars_1['Registered Days'])
 #    print(cars_1['Registered Days'].dtype)
