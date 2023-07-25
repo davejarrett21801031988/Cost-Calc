@@ -501,17 +501,19 @@ if authentication_status:
     cars_1['Purchase Date'] = [date(2019,1,26),date(2019,2,1),date(2016,12,13),date(2015,6,13),date(2013,9,14)]
     cars_1['Today'] = [date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
     cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
-#    cars_1['Registered Days'] = cars_1['Registered Days'].dt.days
-#    print(cars_1['Registered Days'])
+    cars_1['Registered Days'] = cars_1['Registered Days'].dt.days.astype(int)
+    #cars_1['Registered Days'] = cars_1['Registered Days'].to_numpy() / int(np.timedelta64(1,'ns'))
+    print(cars_1['Registered Days'])
 #    if not pd.api.types.is_datetime64_any_dtype(cars_1['Registered Days']):
 #        cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'])
 #    cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'], errors='coerce')
-    cars_1['Registered Days'] = cars_1['Registered Days']/365
+    #cars_1['Registered Days'] = cars_1['Registered Days']/365
 #    print(cars_1['Registered Days'])
-#    print(cars_1['Registered Days'].dtype)
-    cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
+    print(cars_1['Registered Days'].dtype)
+#    cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
 #    cars_1['Purchase Days'] = (cars_1['Purchase Days Orig'].dt.days)/365
-    cars_1['Purchase Days'] = cars_1['Purchase Days Orig']/365
+#    cars_1['Purchase Days'] = cars_1['Purchase Days Orig']/365
+#     print(cars_1['Purchase Days Orig'])
 #    cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
 #    cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].dt.days)/30.42
 #    #print(today)
