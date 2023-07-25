@@ -517,8 +517,8 @@ if authentication_status:
     cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
     cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].dt.days.astype(int))/30.42
 #   print(today)
-    cars_1['Registered Days'] = today - cars_1['Registered Year']
-    cars_1['Registered Days'] = (cars_1['Registered Days'].dt.days.astype(int))
+    #cars_1['Registered Days'] = today - cars_1['Registered Year']
+    #cars_1['Registered Days'] = (cars_1['Registered Days'].dt.days.astype(int))
     cars_1['Starting Mileage (Us)'] = [5,32460,11996,20000,23016]
     cars_1 = cars_1.merge(df2_car, on='Car', how='left')
     cars_1['Mileage'] = cars_1['Mileage'].astype(int)
