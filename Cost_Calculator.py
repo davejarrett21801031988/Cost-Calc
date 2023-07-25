@@ -503,30 +503,30 @@ if authentication_status:
     cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
     cars_1['Registered Days'] = cars_1['Registered Days'].dt.days.astype(int)
     #cars_1['Registered Days'] = cars_1['Registered Days'].to_numpy() / int(np.timedelta64(1,'ns'))
-    print(cars_1['Registered Days'])
-#    if not pd.api.types.is_datetime64_any_dtype(cars_1['Registered Days']):
-#        cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'])
-#    cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'], errors='coerce')
+#   print(cars_1['Registered Days'])
+#   if not pd.api.types.is_datetime64_any_dtype(cars_1['Registered Days']):
+#       cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'])
+#   cars_1['Registered Days'] = pd.to_datetime(cars_1['Registered Days'], errors='coerce')
     cars_1['Registered Days'] = cars_1['Registered Days']/365
-#    print(cars_1['Registered Days'])
-    print(cars_1['Registered Days'].dtype)
-#    cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
-#    cars_1['Purchase Days'] = (cars_1['Purchase Days Orig'].dt.days)/365
-#    cars_1['Purchase Days'] = cars_1['Purchase Days Orig']/365
-#     print(cars_1['Purchase Days Orig'])
-#    cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
-#    cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].dt.days)/30.42
-#    #print(today)
-#    #cars_1['Registered Days'] = today - cars_1['Registered Year']
-#    cars_1['Starting Mileage (Us)'] = [5,32460,11996,20000,23016]
-#    cars_1 = cars_1.merge(df2_car, on='Car', how='left')
-#    cars_1['Mileage'] = cars_1['Mileage'].astype(int)
-#    cars_1['Our Mileage'] = cars_1['Mileage'] - cars_1['Starting Mileage (Us)']
-#    cars_1['Annual Mileage (Us)'] = cars_1['Our Mileage'] / cars_1['Purchase Days']
-#    cars_1['Annual Mileage (Total)'] = cars_1['Mileage'] / cars_1['Registered Days']
-#    cars_1['Estimated/Sold Value'] = [18000,5000,1778.04,6800,3000]
-#    cars_1['Annual Mileage (Total)'] = cars_1['Annual Mileage (Total)'].map('{:,.1f}'.format)
-#    cars_1['Annual Mileage (Us)'] = cars_1['Annual Mileage (Us)'].map('{:,.1f}'.format)
+#   print(cars_1['Registered Days'])
+#   print(cars_1['Registered Days'].dtype)
+    cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
+    cars_1['Purchase Days'] = (cars_1['Purchase Days Orig'].dt.days.astype(int))/365
+#   cars_1['Purchase Days'] = cars_1['Purchase Days Orig']/365
+#   print(cars_1['Purchase Days Orig'])
+#   cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
+#   cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].dt.days)/30.42
+#   print(today)
+#   cars_1['Registered Days'] = today - cars_1['Registered Year']
+#   cars_1['Starting Mileage (Us)'] = [5,32460,11996,20000,23016]
+#   cars_1 = cars_1.merge(df2_car, on='Car', how='left')
+#   cars_1['Mileage'] = cars_1['Mileage'].astype(int)
+#   cars_1['Our Mileage'] = cars_1['Mileage'] - cars_1['Starting Mileage (Us)']
+#   cars_1['Annual Mileage (Us)'] = cars_1['Our Mileage'] / cars_1['Purchase Days']
+#   cars_1['Annual Mileage (Total)'] = cars_1['Mileage'] / cars_1['Registered Days']
+#   cars_1['Estimated/Sold Value'] = [18000,5000,1778.04,6800,3000]
+#   cars_1['Annual Mileage (Total)'] = cars_1['Annual Mileage (Total)'].map('{:,.1f}'.format)
+#   cars_1['Annual Mileage (Us)'] = cars_1['Annual Mileage (Us)'].map('{:,.1f}'.format)
 #        #print(cars_1)
 #
 #    amount_by_month_cars_1 = Spend_df[["Period","Category","Item","Amount"]]
