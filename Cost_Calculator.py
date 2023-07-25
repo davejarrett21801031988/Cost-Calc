@@ -520,6 +520,7 @@ if authentication_status:
     cars_1['Estimated/Sold Value'] = [18000,5000,1778.04,6800,3000]
     cars_1['Annual Mileage (Total)'] = cars_1['Annual Mileage (Total)'].map('{:,.1f}'.format)
     cars_1['Annual Mileage (Us)'] = cars_1['Annual Mileage (Us)'].map('{:,.1f}'.format)
+    cars_1['Mileage'] = cars_1['Mileage'].map('{:,.1f}'.format)
 #   print(cars_1)
 
     amount_by_month_cars_1 = Spend_df[["Period","Category","Item","Amount"]]
