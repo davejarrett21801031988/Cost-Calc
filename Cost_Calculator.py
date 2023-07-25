@@ -511,7 +511,8 @@ if authentication_status:
 #    print(cars_1['Registered Days'].dtype)
     cars_1['Purchase Days Orig'] = cars_1['Today'] - cars_1['Purchase Date']
 #    cars_1['Purchase Days'] = (cars_1['Purchase Days Orig'].dt.days)/365
-#    cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
+    cars_1['Purchase Days'] = cars_1['Purchase Days Orig']/365
+    cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
 #    cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].dt.days)/30.42
 #    #print(today)
 #    #cars_1['Registered Days'] = today - cars_1['Registered Year']
