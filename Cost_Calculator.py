@@ -638,10 +638,10 @@ if authentication_status:
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
-            st.text("Joint CC Debt:")
+            st.text("Joint Credit Card:")
             st.subheader(f"£2,000")
         with right_column:
-            st.text("Dave CC Debt:")
+            st.text("Dave Credit Card:")
             st.subheader(f"£7,300")
         with mid_column:
             st.text("Bathroom & Sofa:")
@@ -662,8 +662,8 @@ if authentication_status:
             st.text("Capital:")
             st.subheader(f"£560,000")
         with last:
-            st.text("x:")
-            st.subheader(f"£0")
+            st.text("House Increase:")
+            st.subheader(f"£238,000")
 
         st.markdown("---")
 
