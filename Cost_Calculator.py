@@ -898,7 +898,6 @@ if authentication_status:
                 }
             })
 
-
         #st.markdown("##")
         st.table(cars_2[['Car','Registration','Years','Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Total Cost','Monthly Cost','Estimated/Sold Value','Monthly Cost (after Selling)']])
         st.write("Link to Mazda CX-5 Prices: [link](https://www.autotrader.co.uk/car-search?postcode=gu273nt&radius=200&make=Mazda&model=CX-5&include-delivery-option=on&maximum-mileage=30000&transmission=Manual&fuel-type=Petrol&year-from=2018&year-to=2018&advertising-location=at_cars&page=1)")
