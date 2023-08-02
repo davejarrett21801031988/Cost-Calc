@@ -100,6 +100,11 @@ if authentication_status:
 
     #df3.info()
 
+    #per = df3["Period"].unique()
+    #print(per)
+    #cat = df3["Category"].unique()
+    #print(cat)
+
     # ---Sidebar---
     authenticator.logout("Logout", "sidebar")
     st.sidebar.title(f"Welcome {name}")
@@ -192,7 +197,14 @@ if authentication_status:
         #showlegend=False,
     )
 
+    #df3_periods = (
+    #    df3.groupby(by=["Period"],as_index=False)
+    #)
+    #print(df3_periods)
+
+
     amount_by_month = Spend_df[["Period","Category","Amount"]]
+    #amount_by_month = xxx.merge(amount_by_month_pre, on='Period', how='left')
 
     amount_by_month_grouped = (
         amount_by_month.groupby(by=["Period","Category"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
@@ -261,6 +273,7 @@ if authentication_status:
     amount_by_month_bills_6['Overall Amount'] = amount_by_month_bills_6['Adj_Amount'].fillna(0) + amount_by_month_bills_6['Amount'].fillna(0)
     amount_by_month_bills_7 = amount_by_month_bills_6[['Item','Overall Amount']].sort_values(by=['Overall Amount'], ascending=False)
     #print(amount_by_month_bills_6)
+
     months_done = (periodcalc_5 + 7)
     month_phrase = str(months_done) + str(' complete Months')
     amount_by_month_bills_7['Monthly Cost'] = amount_by_month_bills_7['Overall Amount'] / months_done
@@ -289,7 +302,6 @@ if authentication_status:
     spend_rate_3 = spend_rate_3.fillna(0)
     spend_rate_3["Average Monthly Spend"] = spend_rate_3["Average Spend"]
     spend_rate_4 = spend_rate_3.loc[:, ['Category','Average Monthly Spend','Spend this Month','Spend Rate']]
-    spend_rate_4['Average Monthly Spend'] = spend_rate_4['Average Monthly Spend'].map('£{:,.2f}'.format)
     spend_rate_4['Spend this Month'] = spend_rate_4['Spend this Month'].map('£{:,.2f}'.format)
     spend_rate_4['Spend Rate'] = spend_rate_4['Spend Rate']*100
     if spend_rate_4.empty:
@@ -348,12 +360,63 @@ if authentication_status:
     average_by_month_99 = average_by_month_99[~average_by_month_99["Period"].isin(optionsperiods)]
     average_by_month_99 = average_by_month_99[~average_by_month_99["Category"].isin(options77)]
     #print(average_by_month_99)
+
+    #Bill_Cat = ['House Bills']
+    #average_by_bill = Spend_df[["Period","Amount","Category",'Item']]
+    #average_by_bill = average_by_bill[~average_by_bill["Period"].isin(this_period)]
+    #average_by_bill = average_by_bill[~average_by_bill["Period"].isin(optionsperiods)]
+    #average_by_bill = average_by_bill[average_by_bill["Category"].isin(Bill_Cat)]
+    ##print(average_by_bill)
+    #average_by_month_grouped_99_Bill = (
+    #    average_by_bill.groupby(by=["Period","Item"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
+    #)
+    ##print(average_by_month_grouped_99_Bill)
+
+    ###average total spend by period
     average_by_month_grouped_99 = (
         average_by_month_99.groupby(by=["Period"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
     )
     #print(average_by_month_grouped_99)
     average_by_month_grouped_99_Previous = average_by_month_grouped_99[~average_by_month_grouped_99["Period"].isin(previous_period)]
     #print(average_by_month_grouped_99_Previous)
+
+    ###average spend by category by period
+    average_by_month_grouped_99_Cat = (
+        average_by_month_99.groupby(by=["Period","Category"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
+    )
+    #print(average_by_month_grouped_99_Cat)
+    average_by_month_grouped_99_Previous_Cat = average_by_month_grouped_99_Cat[~average_by_month_grouped_99_Cat["Period"].isin(previous_period)]
+    #print(average_by_month_grouped_99_Previous_Cat)
+    average_by_month_grouped_99_Cat_2 = (
+        average_by_month_grouped_99_Previous_Cat.groupby(by=["Category"],as_index=False).mean(["Amount"]).sort_values(by=["Category"])
+    )
+    #print(average_by_month_grouped_99_Cat_2)
+    spend_rate_6 = spend_rate_5.merge(average_by_month_grouped_99_Cat_2, on='Category', how='left')
+
+    spend_rate_6['Change Fig'] = spend_rate_6['Average Monthly Spend'] - spend_rate_6['Amount']
+    spend_rate_6['Change'] = (spend_rate_6['Change Fig'] / spend_rate_6['Amount']) * 100
+    #spend_rate_6['Amount'] = spend_rate_6['Amount'].map('£{:,.2f}'.format)
+    spend_rate_6['Average Monthly Spend'] = spend_rate_6['Average Monthly Spend'].map('£{:,.2f}'.format)
+    spend_rate_6['Average Monthly Spend Change'] = spend_rate_6['Change'].map('{:,.1f}%'.format)
+    spend_rate_7 = spend_rate_6[['Category','Average Monthly Spend','Average Monthly Spend Change','Spend this Month','Spend Rate','Status']]
+    #print(spend_rate_7)
+
+    ###average spend by house bill by period
+    #average_by_month_grouped_99_Bill_2 = average_by_month_grouped_99_Bill[~average_by_month_grouped_99_Bill["Period"].isin(previous_period)]
+    ##print(average_by_month_grouped_99_Bill_2)
+    #average_by_month_grouped_99_Prev_Bill = (
+    #    average_by_month_grouped_99_Bill_2.groupby(by=["Item"],as_index=False).sum(["Amount"]).sort_values(by=["Item"])
+    #)
+    #print(average_by_month_grouped_99_Prev_Bill)
+    #spend_rate_6 = spend_rate_5.merge(average_by_month_grouped_99_Cat_2, on='Category', how='left')
+
+    #spend_rate_6['Change Fig'] = spend_rate_6['Average Monthly Spend'] - spend_rate_6['Amount']
+    #spend_rate_6['Change'] = (spend_rate_6['Change Fig'] / spend_rate_6['Amount']) * 100
+    ##spend_rate_6['Amount'] = spend_rate_6['Amount'].map('£{:,.2f}'.format)
+    #spend_rate_6['Average Monthly Spend'] = spend_rate_6['Average Monthly Spend'].map('£{:,.2f}'.format)
+    #spend_rate_6['Average Monthly Spend Change'] = spend_rate_6['Change'].map('{:,.1f}%'.format)
+    #spend_rate_7 = spend_rate_6[['Category','Average Monthly Spend','Average Monthly Spend Change','Spend this Month','Spend Rate','Status']]
+    ##print(spend_rate_7)
 
     if average_by_month_grouped_99.empty:
         Average_spend = "£0.00"
@@ -636,7 +699,7 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint Credit Card:")
-            st.subheader(f"£2,000")
+            st.subheader(f"£1,961")
         with right_column:
             st.text("Dave's Credit Card:")
             st.subheader(f"£7,300")
@@ -688,7 +751,7 @@ if authentication_status:
         st.subheader("Spend Rate for the Month")
         st.text("With the current rate of spending in the Month, are we predicted to go over/under the Average Monthly Spend?")
         st.text(day_phrase)
-        st.table(spend_rate_5)
+        st.table(spend_rate_7)
         st.markdown("---")
 
         st.subheader("House Bills")
