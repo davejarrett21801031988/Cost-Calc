@@ -636,16 +636,16 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint Credit Card:")
-            st.subheader(f"£1,000")
+            st.subheader(f"£975")
         with right_column:
             st.text("Dave's Credit Card:")
-            st.subheader(f"£7,400")
+            st.subheader(f"£7,600")
         with mid_column:
             st.text("Bathroom & Sofa:")
             st.subheader(f"£8,000")
         with last:
             st.text("Joint Savings:")
-            st.subheader(f"£8,700")
+            st.subheader(f"£9,125")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
