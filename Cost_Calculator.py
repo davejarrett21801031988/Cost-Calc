@@ -642,7 +642,7 @@ if authentication_status:
             st.subheader(f"£7,600")
         with mid_column:
             st.text("Bathroom & Sofa:")
-            st.subheader(f"£8,000")
+            st.subheader(f"£7,700")
         with last:
             st.text("Joint Savings:")
             st.subheader(f"£9,125")
