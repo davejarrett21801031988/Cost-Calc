@@ -638,7 +638,7 @@ if authentication_status:
             st.text("Joint Credit Card:")
             st.subheader(f"£975")
         with right_column:
-            st.text("Dave's Credit Cards:")
+            st.text("Dave's Credit Cards :")
             st.subheader(f"£7,600")
         with mid_column:
             st.text("Bathroom & Sofa:")
