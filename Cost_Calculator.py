@@ -713,7 +713,7 @@ if authentication_status:
                 fn_Item = st.selectbox("Item",['Amazon Prime','BT Sport','Building & Contents Insurance','Cashback','Council Tax','Firelighters and Wood','Gas & Electricity','Internet','Netflix','Ring','Road Fund','TV Licence','Water'], key = "Item")
             else:
                 if fn_Category == "Cars":
-                    fn_Item = st.selectbox("Item",format_func=special_internal_function,['Peugeot 308 - Insurance','Peugeot 308 - Payments','Peugeot 308 - Recovery','Peugeot 308 - Servicing and Fixes','Peugeot 308 - Tax','Mazda CX-5 - Insurance','Mazda CX-5 - Payments','Mazda CX-5 - Recovery','Mazda CX-5 - Servicing and Fixes','Mazda CX-5 - Tax'], key = "Item")
+                    fn_Item = st.selectbox("Item",['Peugeot 308 - Insurance','Peugeot 308 - Payments','Peugeot 308 - Recovery','Peugeot 308 - Servicing and Fixes','Peugeot 308 - Tax','Mazda CX-5 - Insurance','Mazda CX-5 - Payments','Mazda CX-5 - Recovery','Mazda CX-5 - Servicing and Fixes','Mazda CX-5 - Tax'],format_func=special_internal_function, key = "Item")
                 else:
                     fn_Item = st.text_input("Item", key = "Item")
         with col_4:
