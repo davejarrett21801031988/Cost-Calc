@@ -705,9 +705,9 @@ if authentication_status:
 
         col_1, col_2, col_3, col_4, col_5 = st.columns(5)
         with col_1:
-            fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
+            fn_Who = st.selectbox("Who",["Niki","Dave","Credit Card"], key = "Who")
         with col_2:
-            fn_Category = st.selectbox("Category",["","Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
+            fn_Category = st.selectbox("Category",["Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
         with col_3:
             if fn_Category == "House Bills":
                 fn_Item = st.selectbox("Item",['Amazon Prime','BT Sport','Building & Contents Insurance','Cashback','Council Tax','Firelighters and Wood','Gas & Electricity','Internet','Netflix','Ring','Road Fund','TV Licence','Water'], key = "Item")
@@ -796,7 +796,7 @@ if authentication_status:
         with col_0:
             fn_Transaction_ID = st.text_input("Transaction_ID", key = "Transaction_ID")
         with col_1:
-            fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
+            fn_Who = st.selectbox("Who",["Niki","Dave","Credit Card"], key = "Who")
         with col_2:
             fn_Category = st.selectbox("Category",["Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
         with col_3:
