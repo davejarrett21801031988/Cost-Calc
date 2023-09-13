@@ -798,7 +798,7 @@ if authentication_status:
         with col_1:
             fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
         with col_2:
-            fn_Category = st.selectbox("Category",["","Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
+            fn_Category = st.selectbox("Category",["Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
         with col_3:
             if fn_Category == "House Bills":
                 fn_Item = st.selectbox("Item",['Council Tax','TV Licence','Water','Road Fund','Internet','Gas & Electricity','Building & Contents Insurance','Amazon Prime','BT Sport','Ring','Netflix','Firelighters and Wood','Cashback'], key = "Item")
