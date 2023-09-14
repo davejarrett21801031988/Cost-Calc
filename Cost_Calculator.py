@@ -724,9 +724,9 @@ if authentication_status:
 
         def clear_text():
             st.session_state["Amount"] = ""
-            st.session_state["Item"] = ""
-            st.session_state["Who"] = ""
-            st.session_state["Category"] = ""
+            #st.session_state["Item"] = ""
+            #st.session_state["Who"] = ""
+            #st.session_state["Category"] = ""
 
         #save data
         ref = db.reference('py/')
@@ -753,7 +753,7 @@ if authentication_status:
                     'Item': fn_Item,
                     'Amount': fn_Amount,
                     'Who': fn_Who,
-                    '': fn_Category,
+                    'Category': fn_Category,
                     'Percentage_Split': fn_Percentage_Split,
                 }
             })
@@ -816,9 +816,9 @@ if authentication_status:
         def clear_text():
             st.session_state["Transaction_ID"] = ""
             st.session_state["Amount"] = ""
-            st.session_state["Item"] = ""
-            st.session_state["Who"] = ""
-            st.session_state["Category"] = ""
+            #st.session_state["Item"] = ""
+            #st.session_state["Who"] = ""
+            #st.session_state["Category"] = ""
 
         ref = db.reference('py/')
         def update_data():
