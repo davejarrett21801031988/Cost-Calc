@@ -418,7 +418,7 @@ if authentication_status:
         Average_spend_Previous = average_by_month_grouped_99_Previous["Amount"].mean()
 
         #print(Average_spend
-        #print(Average_spend_Previous)
+        #print(Average_spend_Previous
 
         df_selection_cap = df3.query(
             "Period == @Month_Sidebar & Category == 'Mortgage Capital'"
