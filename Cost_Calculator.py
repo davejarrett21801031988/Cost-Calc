@@ -30,7 +30,7 @@ st.set_page_config(page_title="Cost Calculator",
                 layout="wide"
 )
 
-#users
+#user
 names = ["David Jarrett", "Nicola Jarrett"]
 usernames = ["djarrett", "njarrett"]
 
