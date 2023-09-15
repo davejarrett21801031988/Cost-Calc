@@ -98,7 +98,61 @@ if authentication_status:
     df3["Period"] = df3["Period"].astype(str)
     df3["Month"] = df3["Month"].apply(lambda x: calendar.month_abbr[x])
 
+    df3_slim = df3[['Period','Category','Amount']]
+    df3_complete = (
+        df3_slim.groupby(by=["Period","Category"],as_index=False).sum(["Amount"])
+    )
+    df3_complete["Concat"] = df3_complete["Period"] + df3_complete["Category"]
+    #print(df3_complete)
+
     #df3.info()
+    optionsperiods = ['2022-4','2022-5']
+    df_periods = pd.DataFrame(columns=['Period', 'Join'])
+    df_categories = pd.DataFrame(columns=['Category', 'Join'])
+    df_periods["Period"] = df3["Period"].unique()
+    df_periods["Join"] = 1
+    df_categories["Category"] = df3["Category"].unique()
+    df_categories["Join"] = 1
+    df_distincts = df_periods.merge(df_categories, on='Join', how='left')
+    df_distincts["Concat"] = df_distincts["Period"] + df_distincts["Category"]
+    df_distincts = df_distincts[~df_distincts["Period"].isin(optionsperiods)]
+    #CarTest = ['Cars']
+    #df_distincts = df_distincts[df_distincts["Category"].isin(CarTest)]
+    #df_distincts = df_distincts[~df_distincts["Period"].isin(this_period)]
+    #print(df_distincts)
+
+    df_join = df_distincts.merge(df3_complete, on='Concat', how='left')
+    df_join = df_join[['Amount','Category_x','Period_x']].sort_values(by=["Period_x", "Category_x"])
+    df_join["Amount"] = df_join["Amount"].fillna(0)
+    zeroes = [0]
+    df_join = df_join[df_join["Amount"].isin(zeroes)]
+    df_join = df_join.rename(columns={'Category_x': 'Category', 'Period_x': 'Period'})
+    df_join["Item"] = ""
+    df_join["Percentage_Split"] = 50
+    df_join["Dave_Owe"] = 0
+    df_join["Niki_Owe"] = 0
+    df_join["Percentage Split (Dave)"] = 50
+    df_join["Per"] = 50
+    df_join["Amount Spent"] = '£0'
+    df_join["Who"] = 'Dave'
+    df_join["Year"] = df_join["Period"].str[0:4]
+    df_join["Year"] = df_join["Year"].astype(int)
+    df_join["Month"] = df_join["Period"].str[5:7]
+    df_join["Month"] = df_join["Month"].astype(int)
+    df_join["Day"] = 1
+    df_join["Hour"] = 1
+    df_join["Minute"] = 1
+    df_join["Second"] = 1
+    df_join["Item Count"] = 1
+    df_join["Transaction_ID"] = '99999999999999'
+    #print(df_join)
+    df_join["Date"] = pd.to_datetime(df_join[['Year', 'Month', 'Day', 'Hour', 'Minute', 'Second']])
+    #print(df_join)
+    #print(df3)
+    df_join_full = pd.concat([df_join, df3])#, ignore_index=True)
+    print(df_join_full)
+
+    df3 = df_join_full
 
     # ---Sidebar---
     authenticator.logout("Logout", "sidebar")
@@ -335,7 +389,7 @@ if authentication_status:
     #print(average_by_month_total)
     #print(amount_by_month_grouped_2)
 
-    amount_by_month_grouped_flat = amount_by_month_grouped[amount_by_month_grouped["Category"].isin(options77)]
+    amount_by_month_grouped_flat = df3[df3["Category"].isin(options77)]
     GuildfordStart = 29273.753
     amount_by_month_grouped_flat_figure = -amount_by_month_grouped_flat["Amount"].sum() + GuildfordStart
     amount_by_month_grouped_flat_figure = "£"+"{:,.2f}".format(amount_by_month_grouped_flat_figure)
@@ -373,6 +427,10 @@ if authentication_status:
         #print(Mortgage_Capital_df)
         Average_Mortgage_Capital = Mortgage_Capital_df["Amount"].mean()
         Average_Mortgage_Capital_perc = (Average_Mortgage_Capital / Average_spend)*100
+        if (np.isnan(Average_Mortgage_Capital)):
+            Average_Mortgage_Capital = 0
+        if (np.isnan(Average_Mortgage_Capital_perc)):
+            Average_Mortgage_Capital_perc = 0
         Average_Mortgage_Capital = "£"+"{:,.2f}".format(Average_Mortgage_Capital)
         Average_Mortgage_Capital_perc = "{:,.1f}%".format(Average_Mortgage_Capital_perc)
         Average_Mortgage_Capital = Average_Mortgage_Capital+" ("+Average_Mortgage_Capital_perc+") "
