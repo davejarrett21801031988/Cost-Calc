@@ -445,7 +445,7 @@ if authentication_status:
         Average_spend = "£"+"{:,.2f}".format(Average_spend)
         Average_spend = Average_spend+" ("+Average_Spend_Change+") "
 
-    #bar chart 2
+    #bar chart
     fig_line = px.bar(
         data_frame = amount_by_month_grouped_2,
         x = "Period",
