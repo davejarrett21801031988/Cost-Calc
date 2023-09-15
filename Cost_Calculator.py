@@ -150,7 +150,7 @@ if authentication_status:
     #print(df_join)
     #print(df3)
     df_join_full = pd.concat([df_join, df3])#, ignore_index=True)
-    print(df_join_full)
+    #print(df_join_full)
 
     df3 = df_join_full
 
@@ -420,10 +420,18 @@ if authentication_status:
         #print(Average_spend)
         #print(Average_spend_Previous)
 
+        df_selection_cap = df3.query(
+            "Period == @Month_Sidebar & Category == 'Mortgage Capital'"
+        )
+        amount_by_month_cap = df_selection_cap[["Period","Category","Amount"]]
+        amount_by_month_grouped_cap = (
+            amount_by_month_cap.groupby(by=["Period","Category"],as_index=False).sum(["Amount"]).sort_values(by=["Period"])
+        )
+
         #Mortgage_Capital = [1841.74,1839.79,1837.86,1835.91,1833.98]
-        options77_cap = ['Mortgage Capital']
-        Mortgage_Capital_df = amount_by_month_grouped[amount_by_month_grouped["Category"].isin(options77_cap)]
-        Mortgage_Capital_df = Mortgage_Capital_df[~Mortgage_Capital_df["Period"].isin(this_period)]
+        #options77_cap = ['Mortgage Capital']
+        #Mortgage_Capital_df = amount_by_month_grouped[amount_by_month_grouped["Category"].isin(options77_cap)]
+        Mortgage_Capital_df = amount_by_month_grouped_cap[~amount_by_month_grouped_cap["Period"].isin(this_period)]
         #print(Mortgage_Capital_df)
         Average_Mortgage_Capital = Mortgage_Capital_df["Amount"].mean()
         Average_Mortgage_Capital_perc = (Average_Mortgage_Capital / Average_spend)*100
