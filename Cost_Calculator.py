@@ -999,6 +999,7 @@ if authentication_status:
 
         st.markdown("---")
         st.text("Car Costs:")
+        
             #print(df_selection_cars)
             #st.text("...")
             #df_selection_cars = df_selection_cars[['Date','Car','Item','Amount Spent']].sort_values(by=['Date'], ascending=False)
