@@ -1,5 +1,5 @@
-import pandas as pd
 import firebase_admin
+import pandas as pd
 from firebase_admin import credentials
 from firebase_admin import db
 from datetime import datetime
@@ -671,10 +671,16 @@ if authentication_status:
     cars_2['Estimated/Sold Value'] = cars_2['Estimated/Sold Value'].map('£{:,.2f}'.format)
     cars_2['Monthly Cost (after Selling)'] = cars_2['Monthly Cost (after Selling)'].map('£{:,.2f}'.format)
 
+    exc_cars = ['']
+    cars_3 = cars_2[~cars_2["Car"].isin(exc_cars)]
+
+    exc_trans = ['99999999999999']
+    df_selection_999 = df_selection[~df_selection["Transaction_ID"].isin(exc_trans)]
+
     # --- mainpage ---
     selected = option_menu(
         menu_title = None,
-        options=["Overview","Add Data","Modify Data","Cars","Mortgage Calculator"],
+        options=["Overview","Add Data","Modify Data","Cars"],#,"Mortgage Calculator"],
         orientation = "horizontal"
     )
 
@@ -702,16 +708,16 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint Credit Card:")
-            st.subheader(f"£0")
+            st.subheader(f"£0.00")
         with right_column:
             st.text("Dave's Credit Cards:")
-            st.subheader(f"£7,860")
+            st.subheader(f"£7,860.66")
         with mid_column:
             st.text("Bathroom & Sofa:")
-            st.subheader(f"£7,720")
+            st.subheader(f"£7,539.57")
         with last:
             st.text("Joint Savings:")
-            st.subheader(f"£11,325")
+            st.subheader(f"£11,325.00")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
@@ -848,7 +854,7 @@ if authentication_status:
         st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
         st.subheader("Data Table")
-        st.table(df_selection[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
+        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
         #st.markdown("##")
 
     if selected == "Modify Data":
@@ -925,7 +931,7 @@ if authentication_status:
         st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
         st.subheader("Data Table")
-        st.table(df_selection[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
+        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
         #st.markdown("##")
 
     hide_st_style = """
@@ -977,7 +983,7 @@ if authentication_status:
             })
 
         #st.markdown("##")
-        st.table(cars_2[['Car','Registration','Years','Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Total Cost','Monthly Cost','Estimated/Sold Value','Monthly Cost (after Selling)']])
+        st.table(cars_3[['Car','Registration','Years','Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Total Cost','Monthly Cost','Estimated/Sold Value','Monthly Cost (after Selling)']])
         st.write("Link to Mazda CX-5 Prices: [link](https://www.autotrader.co.uk/car-search?postcode=gu273nt&radius=200&make=Mazda&model=CX-5&include-delivery-option=on&maximum-mileage=30000&transmission=Manual&fuel-type=Petrol&year-from=2018&year-to=2018&advertising-location=at_cars&page=1)")
         st.write("Link to Peugeot 308 Prices: [link](https://www.autotrader.co.uk/car-search?postcode=gu273nt&radius=200&make=Peugeot&model=308&include-delivery-option=on&maximum-mileage=70000&transmission=Manual&fuel-type=Diesel&year-from=2015&year-to=2015&advertising-location=at_cars&page=1)")
         st.markdown("---")
@@ -998,281 +1004,281 @@ if authentication_status:
             #df_selection_cars = df_selection_cars[['Date','Car','Item','Amount Spent']].sort_values(by=['Date'], ascending=False)
         st.table(amount_by_month_cars_600_adj)
 
-    if selected == "Mortgage Calculator":
-
-        st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
-        st.title(":moneybag: Cost Calculator")
-        st.markdown("##")
-
-        #fixed_rate_mortgage(interest, years, payments_year, loan, start_date)
-
-        # CSS to inject contained in a string
-        hide_table_row_index = """
-                    <style>
-                    tbody th {display:none}
-                    .blank {display:none}
-                    </style>
-                    """
-
-        # Inject CSS with Markdown
-        st.markdown(hide_table_row_index, unsafe_allow_html=True)
-
-        col_1, col_2, col_3, col_4, col_5 = st.columns(5)
-        with col_1:
-            fn_Loan = st.text_input("Amount Borrowed (£)", value = 574965, key = "Loan")
-        with col_2:
-            fn_Year = st.text_input("Term (Years)", value = 25, key = "Term")
-        with col_3:
-            fn_Rate = st.text_input("Interest Rate (%)", value = 1.19, key = "Rate")
-        with col_4:
-            fn_Start = st.text_input("Start Date", value = '2022-11-01', key = "Start")
-        with col_5:
-            fn_Over = st.text_input("Regular Overpayment (£)", value = 0, key = "Over")
-        st.markdown("##")
-
-        interest_rate = float(fn_Rate)/100
-        years = int(fn_Year)
-        annual_payments = 12
-        beg_balance = float(fn_Loan)
-        RegularOverpayment = float(fn_Over)
-        start = datetime.strptime(fn_Start, '%Y-%m-%d')
-
-        overpayments = pd.DataFrame(columns=['Date','Overpayment'])
-        overpayments['Date'] = ['2022-05-01']
-        overpayments['Date'] = overpayments['Date'].astype(str)
-        #overpayments['Overpayment'] = [60000]
-
-        periods = years * annual_payments
-        df_m = pd.DataFrame(index=range(1, periods+1))
-        df_m["Date"] = pd.date_range(start, periods=periods, freq='MS', name='Payment Date').date
-        df_m["Date"] = df_m["Date"].astype(str)
-
-        df_over = pd.DataFrame(index=range(1, periods+1))
-        df_over.insert(0, 'Period', range(1, 1 + len(df_over)))
-        df_over["Overpayment"] = 0
-        #df_over.loc[20,['Overpayment']] = 60000
-        #over_row = df_over["Overpayment"].loc[df_over['Period'] == 10]
-        #print(df_over)
-
-        #save data
-        #ref = db.reference('py/')
-        #Period = 1
-        #Overpayments_ref = ref.child('Overpayments')
-        #Overpayments_ref.set({
-        #    Period:{
-        #        'Amount': 0
-        #    }
-        #})
-
-        def update_over():
-            df_over.loc[fn_period,['Overpayment']] = int(fn_overpayment)
-
-        def clear_over():
-            df_over["Overpayment"] = 0
-
-        first, left_column = st.columns(2)
-        with first:
-            fn_period =  st.selectbox("Period",df_over["Period"], key = "Period")
-        with left_column:
-            fn_overpayment = st.text_input("Overpayment (£)", value = 0, key = "Overpayment")
-        #with next:
-        #    fn_submitover = st.button("Add one-off Overpayment", on_click = "")
-        #with final:
-        #    fn_clearover = st.button("Clear all one-off Overpayments", on_click = "")
-        st.markdown("##")
-
-        df_over.loc[fn_period,['Overpayment']] = int(fn_overpayment)
-
-        df_mc = df_m.merge(overpayments, on='Date', how='left')
-
-        df_mc["Overpayment"] = df_mc["Overpayment"].fillna(0)
-        df_mc.insert(0, 'Period', range(1, 1 + len(df_mc)))
-
-        def amortize(principal, interest_rate, years, RegularOverpayment, annual_payments=12, start_date=date.today()):
-
-            pmt = -round(npf.pmt(interest_rate/annual_payments, years*annual_payments, principal), 2)
-            # initialize the variables to keep track of the periods and running balances
-            p = 1
-            beg_balance = principal
-            end_balance = principal
-
-            while end_balance > 10:
-
-                addl_principal = RegularOverpayment
-
-                # Recalculate the interest based on the current balance
-                interest = round(((interest_rate/annual_payments) * beg_balance), 2)
-                #print(interest)
-
-                # Determine payment based on whether or not this period will pay off the loan
-                pmt = min(pmt, beg_balance + interest)
-                principal = pmt - interest
-                #print(principal)
-
-                lumpover = df_over.loc[p]['Overpayment']
-
-                #print(lumpover)
-
-                if lumpover > 0:
-                    addl_principal = lumpover + RegularOverpayment
-
-                # Ensure additional payment gets adjusted if the loan is being paid off
-                addl_principal = min(addl_principal, beg_balance - principal)
-                end_balance = beg_balance - (principal + addl_principal)
-                #print(end_balance)
-
-                yield OrderedDict([('Month',start_date),
-                                   ('Period', p),
-                                   ('Beginning Balance', beg_balance),
-                                   ('Payment', pmt),
-                                   ('Capital', principal),
-                                   ('Interest', interest),
-                                   ('Additional Capital', addl_principal),
-                                   ('End Balance', end_balance)])
-
-                # Increment the counter, balance and date
-                p += 1
-                start_date += relativedelta(months=1)
-                beg_balance = end_balance
-
-        schedule = pd.DataFrame(amortize(beg_balance, interest_rate, years, RegularOverpayment, start_date=start))
-        Total_Interest = schedule["Interest"].sum()
-        Total_Payments = schedule["Period"].count()
-        Total_Overpayments = schedule["Additional Capital"].sum()
-
-        def amortize_orig(principal, interest_rate, years, addl_principal=0, annual_payments=12, start_date=date.today()):
-
-            pmt = -round(npf.pmt(interest_rate/annual_payments, years*annual_payments, principal), 2)
-            # initialize the variables to keep track of the periods and running balances
-            p = 1
-            beg_balance = principal
-            end_balance = principal
-
-            while end_balance > 10:
-
-                addl_principal = 0
-
-                # Recalculate the interest based on the current balance
-                interest = round(((interest_rate/annual_payments) * beg_balance), 2)
-
-                # Determine payment based on whether or not this period will pay off the loan
-                pmt = min(pmt, beg_balance + interest)
-                principal = pmt - interest
-
-                #if p == 10:
-                    #addl_principal = 60000
-
-                # Ensure additional payment gets adjusted if the loan is being paid off
-                addl_principal = min(addl_principal, beg_balance - principal)
-                end_balance = beg_balance - (principal + addl_principal)
-
-                yield OrderedDict([('Month',start_date),
-                                   ('Period', p),
-                                   ('Beginning Balance', beg_balance),
-                                   ('Payment', pmt),
-                                   ('Capital', principal),
-                                   ('Interest', interest),
-                                   ('Additional Capital', addl_principal),
-                                   ('End Balance', end_balance)])
-
-                # Increment the counter, balance and date
-                p += 1
-                start_date += relativedelta(months=1)
-                beg_balance = end_balance
-
-        schedule_orig = pd.DataFrame(amortize_orig(beg_balance, interest_rate, years, addl_principal=0, start_date=start))
-        Total_Original_Interest = schedule_orig["Interest"].sum()
-        Total_Original_Payments = schedule_orig["Period"].count()
-
-        scheduleComparison = schedule_orig.merge(schedule, on='Period', how='left')
-
-        scheduleComparison_2 = scheduleComparison[['Period','End Balance_x','End Balance_y']]
-        scheduleComparison_2['End Balance_y'] = scheduleComparison_2['End Balance_y'].fillna(0)
-        scheduleComparison_2['Original Balance (no overpayments)'] = scheduleComparison_2['End Balance_x']
-        scheduleComparison_2['Adjusted Balance (with overpayments)'] = scheduleComparison_2['End Balance_y']
-        #print(scheduleComparison_2)
-
-        scheduleComparison_3 = scheduleComparison[['Period','Interest_x','Interest_y']]
-        scheduleComparison_3['Interest_y'] = scheduleComparison_3['Interest_y'].fillna(0)
-        scheduleComparison_3['Original Interest'] = scheduleComparison_3['Interest_x']
-        scheduleComparison_3['Adjusted Interest'] = scheduleComparison_3['Interest_y']
-        #print(scheduleComparison_3)
-
-        schedule_line = px.line(
-            data_frame = scheduleComparison_2,
-            x = "Period",
-            y = ["Original Balance (no overpayments)","Adjusted Balance (with overpayments)"],
-            labels={
-                         "Period": "Period",
-                         "value": "Balance (£)"
-                     },
-            #color = "variables",
-            color_discrete_map={
-                    "Adjusted Balance (with overpayments)'": "green",
-                    "Original Balance (no overpayments)": "blue"
-                    },
-            title = "Balance over Time",
-        )
-        schedule_line.update_xaxes(
-            #dtick="M1",
-            nticks=20
-            #tickformat="%b\n%Y"
-        )
-        schedule_line.update_layout(
-            plot_bgcolor="rgba(0,0,0,0)",
-            xaxis=(dict(showgrid=False)),
-            yaxis=(dict(showgrid=False)),
-            legend_title="",
-        )
-
-        interestsaved_pie = pd.DataFrame(columns=['Category','Interest'])
-        interestsaved_pie['Category'] = ['Interest Saved','Interest Paid']
-        interestsaved_pie['Interest'] = [(Total_Original_Interest - Total_Interest), Total_Interest]
-        #print(interestsaved_pie)
-
-        fig_pie_2 = px.pie(
-            data_frame = interestsaved_pie,
-            labels = "Category",
-            values = "Interest",
-            names = "Category",
-            color = "Category",
-            color_discrete_map={
-                    "Interest Saved'": "green",
-                    "Interest Paid": "blue"
-                    },
-            title = "Interest Saved",
-            )
-
-        schedule["Beginning Balance"] = schedule["Beginning Balance"].map('£{:,.2f}'.format)
-        schedule["Payment"] = schedule["Payment"].map('£{:,.2f}'.format)
-        schedule["Capital"] = schedule["Capital"].map('£{:,.2f}'.format)
-        schedule["Interest"] = schedule["Interest"].map('£{:,.2f}'.format)
-        schedule["Additional Capital"] = schedule["Additional Capital"].map('£{:,.2f}'.format)
-        schedule["End Balance"] = schedule["End Balance"].map('£{:,.2f}'.format)
-
-        df_mc["Overpayment"] = df_mc["Overpayment"].map('£{:,.2f}'.format)
-
-        first, left_column, right_column, mid_column, last = st.columns(5)
-        with first:
-            st.text("Overpayments:")
-            st.subheader(f"£{Total_Overpayments:,.2f}")
-        with left_column:
-            st.text("Total Interest:")
-            st.subheader(f"£{Total_Interest:,.2f}")
-        with right_column:
-            st.text("Interest saved:")
-            st.subheader(f"£{Total_Original_Interest - Total_Interest:,.2f}")
-        with last:
-            st.text("Years saved:")
-            st.subheader(f"{(Total_Original_Payments - Total_Payments)/12:,.1f}")
-        with mid_column:
-            st.text("Total Years:")
-            st.subheader(f"{Total_Payments/12:,.1f}")
-
-        first, left_column = st.columns(2)
-        with first:
-            st.plotly_chart(schedule_line)
-        with left_column:
-            st.plotly_chart(fig_pie_2)
-
-        st.table(schedule)
+    # if selected == "Mortgage Calculator":
+    #
+    #     st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
+    #     st.title(":moneybag: Cost Calculator")
+    #     st.markdown("##")
+    #
+    #     #fixed_rate_mortgage(interest, years, payments_year, loan, start_date)
+    #
+    #     # CSS to inject contained in a string
+    #     hide_table_row_index = """
+    #                 <style>
+    #                 tbody th {display:none}
+    #                 .blank {display:none}
+    #                 </style>
+    #                 """
+    #
+    #     # Inject CSS with Markdown
+    #     st.markdown(hide_table_row_index, unsafe_allow_html=True)
+    #
+    #     col_1, col_2, col_3, col_4, col_5 = st.columns(5)
+    #     with col_1:
+    #         fn_Loan = st.text_input("Amount Borrowed (£)", value = 574965, key = "Loan")
+    #     with col_2:
+    #         fn_Year = st.text_input("Term (Years)", value = 25, key = "Term")
+    #     with col_3:
+    #         fn_Rate = st.text_input("Interest Rate (%)", value = 1.19, key = "Rate")
+    #     with col_4:
+    #         fn_Start = st.text_input("Start Date", value = '2022-11-01', key = "Start")
+    #     with col_5:
+    #         fn_Over = st.text_input("Regular Overpayment (£)", value = 0, key = "Over")
+    #     st.markdown("##")
+    #
+    #     interest_rate = float(fn_Rate)/100
+    #     years = int(fn_Year)
+    #     annual_payments = 12
+    #     beg_balance = float(fn_Loan)
+    #     RegularOverpayment = float(fn_Over)
+    #     start = datetime.strptime(fn_Start, '%Y-%m-%d')
+    #
+    #     overpayments = pd.DataFrame(columns=['Date','Overpayment'])
+    #     overpayments['Date'] = ['2022-05-01']
+    #     overpayments['Date'] = overpayments['Date'].astype(str)
+    #     #overpayments['Overpayment'] = [60000]
+    #
+    #     periods = years * annual_payments
+    #     df_m = pd.DataFrame(index=range(1, periods+1))
+    #     df_m["Date"] = pd.date_range(start, periods=periods, freq='MS', name='Payment Date').date
+    #     df_m["Date"] = df_m["Date"].astype(str)
+    #
+    #     df_over = pd.DataFrame(index=range(1, periods+1))
+    #     df_over.insert(0, 'Period', range(1, 1 + len(df_over)))
+    #     df_over["Overpayment"] = 0
+    #     #df_over.loc[20,['Overpayment']] = 60000
+    #     #over_row = df_over["Overpayment"].loc[df_over['Period'] == 10]
+    #     #print(df_over)
+    #
+    #     #save data
+    #     #ref = db.reference('py/')
+    #     #Period = 1
+    #     #Overpayments_ref = ref.child('Overpayments')
+    #     #Overpayments_ref.set({
+    #     #    Period:{
+    #     #        'Amount': 0
+    #     #    }
+    #     #})
+    #
+    #     def update_over():
+    #         df_over.loc[fn_period,['Overpayment']] = int(fn_overpayment)
+    #
+    #     def clear_over():
+    #         df_over["Overpayment"] = 0
+    #
+    #     first, left_column = st.columns(2)
+    #     with first:
+    #         fn_period =  st.selectbox("Period",df_over["Period"], key = "Period")
+    #     with left_column:
+    #         fn_overpayment = st.text_input("Overpayment (£)", value = 0, key = "Overpayment")
+    #     #with next:
+    #     #    fn_submitover = st.button("Add one-off Overpayment", on_click = "")
+    #     #with final:
+    #     #    fn_clearover = st.button("Clear all one-off Overpayments", on_click = "")
+    #     st.markdown("##")
+    #
+    #     df_over.loc[fn_period,['Overpayment']] = int(fn_overpayment)
+    #
+    #     df_mc = df_m.merge(overpayments, on='Date', how='left')
+    #
+    #     df_mc["Overpayment"] = df_mc["Overpayment"].fillna(0)
+    #     df_mc.insert(0, 'Period', range(1, 1 + len(df_mc)))
+    #
+    #     def amortize(principal, interest_rate, years, RegularOverpayment, annual_payments=12, start_date=date.today()):
+    #
+    #         pmt = -round(npf.pmt(interest_rate/annual_payments, years*annual_payments, principal), 2)
+    #         # initialize the variables to keep track of the periods and running balances
+    #         p = 1
+    #         beg_balance = principal
+    #         end_balance = principal
+    #
+    #         while end_balance > 10:
+    #
+    #             addl_principal = RegularOverpayment
+    #
+    #             # Recalculate the interest based on the current balance
+    #             interest = round(((interest_rate/annual_payments) * beg_balance), 2)
+    #             #print(interest)
+    #
+    #             # Determine payment based on whether or not this period will pay off the loan
+    #             pmt = min(pmt, beg_balance + interest)
+    #             principal = pmt - interest
+    #             #print(principal)
+    #
+    #             lumpover = df_over.loc[p]['Overpayment']
+    #
+    #             #print(lumpover)
+    #
+    #             if lumpover > 0:
+    #                 addl_principal = lumpover + RegularOverpayment
+    #
+    #             # Ensure additional payment gets adjusted if the loan is being paid off
+    #             addl_principal = min(addl_principal, beg_balance - principal)
+    #             end_balance = beg_balance - (principal + addl_principal)
+    #             #print(end_balance)
+    #
+    #             yield OrderedDict([('Month',start_date),
+    #                                ('Period', p),
+    #                                ('Beginning Balance', beg_balance),
+    #                                ('Payment', pmt),
+    #                                ('Capital', principal),
+    #                                ('Interest', interest),
+    #                                ('Additional Capital', addl_principal),
+    #                                ('End Balance', end_balance)])
+    #
+    #             # Increment the counter, balance and date
+    #             p += 1
+    #             start_date += relativedelta(months=1)
+    #             beg_balance = end_balance
+    #
+    #     schedule = pd.DataFrame(amortize(beg_balance, interest_rate, years, RegularOverpayment, start_date=start))
+    #     Total_Interest = schedule["Interest"].sum()
+    #     Total_Payments = schedule["Period"].count()
+    #     Total_Overpayments = schedule["Additional Capital"].sum()
+    #
+    #     def amortize_orig(principal, interest_rate, years, addl_principal=0, annual_payments=12, start_date=date.today()):
+    #
+    #         pmt = -round(npf.pmt(interest_rate/annual_payments, years*annual_payments, principal), 2)
+    #         # initialize the variables to keep track of the periods and running balances
+    #         p = 1
+    #         beg_balance = principal
+    #         end_balance = principal
+    #
+    #         while end_balance > 10:
+    #
+    #             addl_principal = 0
+    #
+    #             # Recalculate the interest based on the current balance
+    #             interest = round(((interest_rate/annual_payments) * beg_balance), 2)
+    #
+    #             # Determine payment based on whether or not this period will pay off the loan
+    #             pmt = min(pmt, beg_balance + interest)
+    #             principal = pmt - interest
+    #
+    #             #if p == 10:
+    #                 #addl_principal = 60000
+    #
+    #             # Ensure additional payment gets adjusted if the loan is being paid off
+    #             addl_principal = min(addl_principal, beg_balance - principal)
+    #             end_balance = beg_balance - (principal + addl_principal)
+    #
+    #             yield OrderedDict([('Month',start_date),
+    #                                ('Period', p),
+    #                                ('Beginning Balance', beg_balance),
+    #                                ('Payment', pmt),
+    #                                ('Capital', principal),
+    #                                ('Interest', interest),
+    #                                ('Additional Capital', addl_principal),
+    #                                ('End Balance', end_balance)])
+    #
+    #             # Increment the counter, balance and date
+    #             p += 1
+    #             start_date += relativedelta(months=1)
+    #             beg_balance = end_balance
+    #
+    #     schedule_orig = pd.DataFrame(amortize_orig(beg_balance, interest_rate, years, addl_principal=0, start_date=start))
+    #     Total_Original_Interest = schedule_orig["Interest"].sum()
+    #     Total_Original_Payments = schedule_orig["Period"].count()
+    #
+    #     scheduleComparison = schedule_orig.merge(schedule, on='Period', how='left')
+    #
+    #     scheduleComparison_2 = scheduleComparison[['Period','End Balance_x','End Balance_y']]
+    #     scheduleComparison_2['End Balance_y'] = scheduleComparison_2['End Balance_y'].fillna(0)
+    #     scheduleComparison_2['Original Balance (no overpayments)'] = scheduleComparison_2['End Balance_x']
+    #     scheduleComparison_2['Adjusted Balance (with overpayments)'] = scheduleComparison_2['End Balance_y']
+    #     #print(scheduleComparison_2)
+    #
+    #     scheduleComparison_3 = scheduleComparison[['Period','Interest_x','Interest_y']]
+    #     scheduleComparison_3['Interest_y'] = scheduleComparison_3['Interest_y'].fillna(0)
+    #     scheduleComparison_3['Original Interest'] = scheduleComparison_3['Interest_x']
+    #     scheduleComparison_3['Adjusted Interest'] = scheduleComparison_3['Interest_y']
+    #     #print(scheduleComparison_3)
+    #
+    #     schedule_line = px.line(
+    #         data_frame = scheduleComparison_2,
+    #         x = "Period",
+    #         y = ["Original Balance (no overpayments)","Adjusted Balance (with overpayments)"],
+    #         labels={
+    #                      "Period": "Period",
+    #                      "value": "Balance (£)"
+    #                  },
+    #         #color = "variables",
+    #         color_discrete_map={
+    #                 "Adjusted Balance (with overpayments)'": "green",
+    #                 "Original Balance (no overpayments)": "blue"
+    #                 },
+    #         title = "Balance over Time",
+    #     )
+    #     schedule_line.update_xaxes(
+    #         #dtick="M1",
+    #         nticks=20
+    #         #tickformat="%b\n%Y"
+    #     )
+    #     schedule_line.update_layout(
+    #         plot_bgcolor="rgba(0,0,0,0)",
+    #         xaxis=(dict(showgrid=False)),
+    #         yaxis=(dict(showgrid=False)),
+    #         legend_title="",
+    #     )
+    #
+    #     interestsaved_pie = pd.DataFrame(columns=['Category','Interest'])
+    #     interestsaved_pie['Category'] = ['Interest Saved','Interest Paid']
+    #     interestsaved_pie['Interest'] = [(Total_Original_Interest - Total_Interest), Total_Interest]
+    #     #print(interestsaved_pie)
+    #
+    #     fig_pie_2 = px.pie(
+    #         data_frame = interestsaved_pie,
+    #         labels = "Category",
+    #         values = "Interest",
+    #         names = "Category",
+    #         color = "Category",
+    #         color_discrete_map={
+    #                 "Interest Saved'": "green",
+    #                 "Interest Paid": "blue"
+    #                 },
+    #         title = "Interest Saved",
+    #         )
+    #
+    #     schedule["Beginning Balance"] = schedule["Beginning Balance"].map('£{:,.2f}'.format)
+    #     schedule["Payment"] = schedule["Payment"].map('£{:,.2f}'.format)
+    #     schedule["Capital"] = schedule["Capital"].map('£{:,.2f}'.format)
+    #     schedule["Interest"] = schedule["Interest"].map('£{:,.2f}'.format)
+    #     schedule["Additional Capital"] = schedule["Additional Capital"].map('£{:,.2f}'.format)
+    #     schedule["End Balance"] = schedule["End Balance"].map('£{:,.2f}'.format)
+    #
+    #     df_mc["Overpayment"] = df_mc["Overpayment"].map('£{:,.2f}'.format)
+    #
+    #     first, left_column, right_column, mid_column, last = st.columns(5)
+    #     with first:
+    #         st.text("Overpayments:")
+    #         st.subheader(f"£{Total_Overpayments:,.2f}")
+    #     with left_column:
+    #         st.text("Total Interest:")
+    #         st.subheader(f"£{Total_Interest:,.2f}")
+    #     with right_column:
+    #         st.text("Interest saved:")
+    #         st.subheader(f"£{Total_Original_Interest - Total_Interest:,.2f}")
+    #     with last:
+    #         st.text("Years saved:")
+    #         st.subheader(f"{(Total_Original_Payments - Total_Payments)/12:,.1f}")
+    #     with mid_column:
+    #         st.text("Total Years:")
+    #         st.subheader(f"{Total_Payments/12:,.1f}")
+    #
+    #     first, left_column = st.columns(2)
+    #     with first:
+    #         st.plotly_chart(schedule_line)
+    #     with left_column:
+    #         st.plotly_chart(fig_pie_2)
+    #
+    #     st.table(schedule)
