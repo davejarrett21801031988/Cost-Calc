@@ -711,7 +711,7 @@ if authentication_status:
             st.subheader(f"£0.00")
         with right_column:
             st.text("Dave's Credit Cards:")
-            st.subheader(f"£8,329.98")
+            st.subheader(f"£8,441.58")
         with mid_column:
             st.text("Bathroom & Sofa:")
             st.subheader(f"£7,539.57")
