@@ -233,7 +233,8 @@ if authentication_status:
                 "Dog": "darkslateblue",
                 "Fun": "mediumslateblue",
                 "House Stuff": "mediumpurple",
-                "Cars": "indigo"
+                "Cars": "indigo",
+                "Baby": "darkorchid"
                 },
         #orientation = "h",
         title="Amount per Person ",
@@ -474,7 +475,8 @@ if authentication_status:
                 "Dog": "darkslateblue",
                 "Fun": "mediumslateblue",
                 "House Stuff": "mediumpurple",
-                "Cars": "indigo"
+                "Cars": "indigo",
+                "Baby": "darkorchid"
                 },
         title = "Spend per Month",
         #template="plotly_white",
@@ -522,7 +524,8 @@ if authentication_status:
                 "Dog": "darkslateblue",
                 "Fun": "mediumslateblue",
                 "House Stuff": "mediumpurple",
-                "Cars": "indigo"
+                "Cars": "indigo",
+                "Baby": "darkorchid"
                 },
         #category_orders = dict(Category=[
         #        "Cats",
@@ -779,7 +782,7 @@ if authentication_status:
         with col_1:
             fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
         with col_2:
-            fn_Category = st.selectbox("Category",["","Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
+            fn_Category = st.selectbox("Category",["","Baby","Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
         with col_3:
             if fn_Category == "House Bills":
                 fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","TV Licence","Water"], key = "Item")
@@ -870,7 +873,7 @@ if authentication_status:
         with col_1:
             fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
         with col_2:
-            fn_Category = st.selectbox("Category",["","Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
+            fn_Category = st.selectbox("Category",["","Baby","Balancing Figure","Cars","Cats","Dog","Drinks","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
         with col_3:
             if fn_Category == "House Bills":
                 fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","TV Licence","Water"], key = "Item")
