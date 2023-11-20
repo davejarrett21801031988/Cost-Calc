@@ -778,6 +778,7 @@ if authentication_status:
         st.markdown("##")
         st.text("To add data please populate the following 5 options and click 'Submit'.")
 
+
         col_1, col_2, col_3, col_4, col_5 = st.columns(5)
         with col_1:
             fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
@@ -841,6 +842,8 @@ if authentication_status:
             fn_clear = st.button("Clear", on_click = clear_text)
         #st.markdown("##")
         st.markdown("---")
+
+        #p
 
         #print(fn_Amount)
         #print(fn_Item)

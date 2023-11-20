@@ -1,5 +1,7 @@
 cd C:\Users\david.jarrett\OneDrive - apollounderwriting.com\Desktop\Python\Cost_Calc_v2
 
+python Cost_Calculator_Update.py
+
 streamlit run Cost_Calculator.py
 
 pipreqs ./
