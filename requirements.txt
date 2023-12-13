@@ -1,3 +1,4 @@
+pip
 firebase_admin==6.2.0
 numpy
 numpy_financial
