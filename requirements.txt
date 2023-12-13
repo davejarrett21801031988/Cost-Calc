@@ -1,5 +1,5 @@
 firebase_admin==6.2.0
-numpy==1.23.5
+numpy==1.21.6
 numpy_financial==1.0.0
 pandas==1.5.3
 plotly==5.9.0
