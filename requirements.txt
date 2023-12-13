@@ -1,3 +1,4 @@
+pyhton==3.10.13
 pip==23.3.1
 firebase_admin==6.2.0
 numpy
