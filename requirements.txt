@@ -1,5 +1,5 @@
 firebase_admin==6.2.0
-numpy==1.26.2
+numpy==1.26.1
 numpy_financial==1.0.0
 pandas==2.1.4
 plotly==5.9.0
@@ -8,4 +8,7 @@ streamlit==1.29.0
 streamlit_authenticator==0.1.5
 streamlit_option_menu==0.3.6
 clyent==1.2.1
+toolz==0.12.0
+pyarrow==14.0.1
 requests==2.31.0
+colorama==0.4.6
