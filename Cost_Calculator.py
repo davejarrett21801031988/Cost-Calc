@@ -719,13 +719,13 @@ if authentication_status:
             st.subheader(f"£0.00")
         with right_column:
             st.text("Dave's Credit Cards:")
-            st.subheader(f"£8,464.67")
+            st.subheader(f"£7,581.79")
         with mid_column:
             st.text("Bathroom & Sofa:")
             st.subheader(f"£7,173.57")
         with last:
             st.text("Joint Savings:")
-            st.subheader(f"£16,913.45")
+            st.subheader(f"£19,355.66")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
