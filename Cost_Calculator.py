@@ -725,10 +725,10 @@ if authentication_status:
             st.subheader(f"£8,600.79")
         with mid_column:
             st.text("Bathroom, Carpets & Sofa:")
-            st.subheader(f"£9,990.45")
+            st.subheader(f"£9,724.12")
         with last:
             st.text("Joint Savings:")
-            st.subheader(f"£19,986.40")
+            st.subheader(f"£21,050.57")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
@@ -737,10 +737,10 @@ if authentication_status:
             st.subheader(f"£144,000")
         with right_column:
             st.text("Mortgages:")
-            st.subheader(f"£724,381")
+            st.subheader(f"£722,504")
         with mid_column:
             st.text("Capital:")
-            st.subheader(f"£572,699")
+            st.subheader(f"£574,572")
         with last:
             st.text("House Increase:")
             st.subheader(f"£238,000")
