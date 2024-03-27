@@ -722,7 +722,7 @@ if authentication_status:
             st.subheader(f"£0.00")
         with right_column:
             st.text("Dave's Credit Cards:")
-            st.subheader(f"£8,097.67")
+            st.subheader(f"£8,000.00")
         with mid_column:
             st.text("Bathroom, Carpets & Sofa:")
             st.subheader(f"£9,309.28")
@@ -734,7 +734,7 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint Salary:")
-            st.subheader(f"£148,275")
+            st.subheader(f"£148,275.00")
         with right_column:
             st.text("Mortgages:")
             st.subheader(f"£720,625.21")
@@ -743,18 +743,22 @@ if authentication_status:
             st.subheader(f"£576,447.32")
         with last:
             st.text("House Increase:")
-            st.subheader(f"£238,000")
+            st.subheader(f"£238,000.00")
 
         st.markdown("---")
 
-        left_column, right_column = st.columns(2)
-        with left_column:
-            st.plotly_chart(fig_line)
-        with right_column:
-            st.plotly_chart(fig_pie)
+        #left_column, right_column = st.columns(2)
+        #with left_column:
+        #    st.plotly_chart(fig_line)
+        #with right_column:
+        #    st.plotly_chart(fig_pie)
         #with last:
         #    st.text("help")
             #st.plotly_chart(fig_line_totals)
+        st.plotly_chart(fig_line)
+        st.markdown("---")
+
+        st.plotly_chart(fig_pie)
         st.markdown("---")
 
         # CSS to inject contained in a string
