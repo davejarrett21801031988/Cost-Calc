@@ -728,7 +728,7 @@ if authentication_status:
             st.subheader(f"£9,042.95")
         with last:
             st.text("Joint Savings:")
-            st.subheader(f"£27,946.52")
+            st.subheader(f"£30,096.96")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
