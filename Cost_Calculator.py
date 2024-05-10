@@ -718,11 +718,11 @@ if authentication_status:
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
-            st.text("Joint Credit Card:")
+            st.text("Joint Credit Card (0%):")
             st.subheader(f"£0.00")
         with right_column:
             st.text("Dave's Credit Cards (0%):")
-            st.subheader(f"£7,244.00")
+            st.subheader(f"£7,299.00")
         with mid_column:
             st.text("Bathroom, Carpets & Sofa (0%):")
             st.subheader(f"£8,776.62")
@@ -736,7 +736,7 @@ if authentication_status:
             st.text("Joint Salary:")
             st.subheader(f"£151,479.00")
         with right_column:
-            st.text("Mortgages:")
+            st.text("Mortgage:")
             st.subheader(f"£581,872.02")
         with mid_column:
             st.text("Capital:")
