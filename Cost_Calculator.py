@@ -311,8 +311,8 @@ if authentication_status:
         amount_by_month_bills_4.groupby(by=["Item"],as_index=False).sum(["Amount"])
     )
     amount_by_month_bills_5_adj = pd.DataFrame(columns=['Item','Adj_Amount'])
-    amount_by_month_bills_5_adj['Item'] = ['Council Tax','TV Licence','Water','Road Fund','Internet','Gas & Electricity','Building & Contents Insurance','Amazon Prime','BT Sport','Ring','Netflix','Firelighters and Wood','Cashback']
-    amount_by_month_bills_5_adj['Adj_Amount'] = [1980.36,92.75,161.64,0,145.76,493.41,489.39,98.75,175,49.98,0,0,-6.24]
+    amount_by_month_bills_5_adj['Item'] = ['Council Tax','TV Licence','Water','Road Fund','Internet','Gas & Electricity','Building & Contents Insurance','Amazon Prime','BT Sport','Ring','Netflix','Firelighters and Wood','Cashback','Spotify']
+    amount_by_month_bills_5_adj['Adj_Amount'] = [1980.36,92.75,161.64,0,145.76,493.41,489.39,98.75,175,49.98,0,0,-6.24,0]
     amount_by_month_bills_6 = amount_by_month_bills_5.merge(amount_by_month_bills_5_adj, on='Item', how='outer')
     amount_by_month_bills_6['Overall Amount'] = amount_by_month_bills_6['Adj_Amount'].fillna(0) + amount_by_month_bills_6['Amount'].fillna(0)
     amount_by_month_bills_7 = amount_by_month_bills_6[['Item','Overall Amount']].sort_values(by=['Overall Amount'], ascending=False)
@@ -798,7 +798,7 @@ if authentication_status:
             fn_Category = st.selectbox("Category",["","Baby","Balancing Figure","Cars","Cats","Dog","Drinks","Extension","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
         with col_3:
             if fn_Category == "House Bills":
-                fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","TV Licence","Water"], key = "Item")
+                fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","Spotify","TV Licence","Water"], key = "Item")
             else:
                 if fn_Category == "Cars":
                     fn_Item = st.selectbox("Item",["","Peugeot 308 - Insurance","Peugeot 308 - Payments","Peugeot 308 - Recovery","Peugeot 308 - Servicing and Fixes","Peugeot 308 - Tax","Mazda CX-5 - Insurance","Mazda CX-5 - Payments","Mazda CX-5 - Recovery","Mazda CX-5 - Servicing and Fixes","Mazda CX-5 - Tax"], key = "Item")
@@ -891,7 +891,7 @@ if authentication_status:
             fn_Category = st.selectbox("Category",["","Baby","Balancing Figure","Cars","Cats","Dog","Drinks","Extension","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
         with col_3:
             if fn_Category == "House Bills":
-                fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","TV Licence","Water"], key = "Item")
+                fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","Spotify","TV Licence","Water"], key = "Item")
             else:
                 if fn_Category == "Cars":
                     fn_Item = st.selectbox("Item",["","Peugeot 308 - Insurance","Peugeot 308 - Payments","Peugeot 308 - Recovery","Peugeot 308 - Servicing and Fixes","Peugeot 308 - Tax","Mazda CX-5 - Insurance","Mazda CX-5 - Payments","Mazda CX-5 - Recovery","Mazda CX-5 - Servicing and Fixes","Mazda CX-5 - Tax"], key = "Item")
