@@ -727,7 +727,7 @@ if authentication_status:
             st.text("Bathroom, Carpets & Sofa (0%):")
             st.subheader(f"£7,711.30")
         with last:
-            st.text("Joint Savings:")
+            st.text("Joint Savings: ")
             st.subheader(f"£103,276.00")
         #st.markdown("##")
 
