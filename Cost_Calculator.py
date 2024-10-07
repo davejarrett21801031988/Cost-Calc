@@ -153,6 +153,8 @@ if authentication_status:
     #print(df_join_full)
 
     df3 = df_join_full
+    unique_categories = df3["Category"].unique()
+    default_categories = [category for category in unique_categories if category != 'Extension']
 
     # ---Sidebar---
     authenticator.logout("Logout", "sidebar")
@@ -170,8 +172,8 @@ if authentication_status:
     )
     Category_Sidebar = st.sidebar.multiselect(
         "Category:",
-        options=df3["Category"].unique(),
-        default=df3["Category"].unique()
+        options=unique_categories,
+        default=default_categories
     )
 
     df_selection = df3.query(
