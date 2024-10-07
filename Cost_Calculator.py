@@ -783,6 +783,21 @@ if authentication_status:
         st.text(month_phrase)
         st.table(amount_by_month_bills_7)
 
+        # CSS to inject contained in a string
+        hide_table_row_index = """
+                    <style>
+                    tbody th {display:none}
+                    .blank {display:none}
+                    </style>
+                    """
+
+        # Inject CSS with Markdown
+        st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
+        st.markdown("---")
+        st.subheader("Last 10 Transactions")
+        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False).head(10))
+
     if selected == "Add Data":
 
         st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
