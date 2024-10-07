@@ -756,6 +756,26 @@ if authentication_status:
         #    st.text("help")
             #st.plotly_chart(fig_line_totals)
 
+        fig_line.update_layout(
+            legend=dict(
+                orientation="h",  # Horizontal orientation
+                yanchor="top",
+                y=-0.3,  # Positioning the legend below the chart
+                xanchor="center",
+                x=0.5
+            )
+        )
+
+        fig_pie.update_layout(
+            legend=dict(
+                orientation="h",  # Horizontal orientation
+                yanchor="top",
+                y=-0.3,  # Positioning the legend below the chart
+                xanchor="center",
+                x=0.5
+            )
+        )
+
         #st.markdown(unsafe_allow_html=True)
         st.plotly_chart(fig_line, use_container_width=True)
         st.markdown("---")
