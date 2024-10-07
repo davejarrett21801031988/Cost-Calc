@@ -755,10 +755,12 @@ if authentication_status:
         #with last:
         #    st.text("help")
             #st.plotly_chart(fig_line_totals)
-        st.plotly_chart(fig_line)
+
+        #st.markdown(unsafe_allow_html=True)
+        st.plotly_chart(fig_line, use_container_width=True)
         st.markdown("---")
 
-        st.plotly_chart(fig_pie)
+        st.plotly_chart(fig_pie, use_container_width=True)
         st.markdown("---")
 
         # CSS to inject contained in a string
