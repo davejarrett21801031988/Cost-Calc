@@ -17,7 +17,7 @@ import numpy as np
 from collections import OrderedDict
 from dateutil.relativedelta import *
 import plotly.graph_objects as go
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from pywaffle import Waffle
 
 if not firebase_admin._apps:
