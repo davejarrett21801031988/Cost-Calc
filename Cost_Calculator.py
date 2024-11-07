@@ -8,7 +8,6 @@ import plotly.express as px
 import streamlit as st
 from streamlit_option_menu import option_menu
 import json
-import matplotlib
 import calendar
 import pickle
 from pathlib import Path
