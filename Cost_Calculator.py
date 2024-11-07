@@ -17,6 +17,8 @@ import numpy as np
 from collections import OrderedDict
 from dateutil.relativedelta import *
 import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+from pywaffle import Waffle
 
 if not firebase_admin._apps:
     cred = credentials.Certificate('serviceAK.json')
@@ -506,6 +508,45 @@ if authentication_status:
         #showlegend=False,
     )
 
+
+#    # Get the unique categories from your data
+#    categories = amount_by_month_grouped_notthismonth_pie_4['Category'].unique()
+#
+#    # Define the color map with the same length as the number of categories
+#    color_map = {
+#        "Cats": "lightsteelblue",
+#        "Drinks": "cornflowerblue",
+#        "House Bills": "royalblue",
+#        "Food": "lavender",
+#        "Guildford Flat": "midnightblue",
+#        "Fuel": "navy",
+#        "Other Bills": "darkblue",
+#        "Mortgage Interest": "mediumblue",
+#        "Mortgage Capital": "blue",
+#        "Balancing Figure": "slateblue",
+#        "Dog": "darkslateblue",
+#        "Fun": "mediumslateblue",
+#        "House Stuff": "mediumpurple",
+#        "Cars": "indigo",
+#        "Baby": "darkorchid",
+#        "Extension": "thistle"
+#    }
+#
+#    # Filter the color map to include only the categories present in your data
+#    filtered_color_map = {category: color_map[category] for category in categories if category in color_map}
+#
+#    # Convert the data frame to a dictionary
+#    data = amount_by_month_grouped_notthismonth_pie_4.set_index('Category')['Average Spend'].to_dict()
+#
+#    fig_pie = plt.figure(
+#        FigureClass=Waffle,
+#        rows=10,  # Adjust the number of rows to change the aspect ratio
+#        values=data,
+#        colors=[filtered_color_map[category] for category in data.keys()],
+#        title={'label': 'Average Spend per Month', 'loc': 'center'},
+#        legend={'loc': 'upper left', 'bbox_to_anchor': (1, 1)}
+#    )
+
     fig_pie = px.pie(
         data_frame = amount_by_month_grouped_notthismonth_pie_4,
         labels = "Category",
@@ -550,6 +591,8 @@ if authentication_status:
         #        ]),
         title = "Average Spend per Month"
         )
+
+    #fig_pie.update_layout(margin=dict(t=0, l=0, r=0, b=0))
 
     #read data
     data_car = db.reference('py/Cars').get()
@@ -720,17 +763,17 @@ if authentication_status:
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
-            st.text("Joint Credit Card (0%):")
-            st.subheader(f"£0.00")
-        with right_column:
             st.text("Dave's Credit Cards (0%):")
-            st.subheader(f"£7,225.20")
+            st.subheader(f"£11,007.24")
+        with right_column:
+            st.text("Bathroom, Carpets & Sofas (0%):")
+            st.subheader(f"£7,976.59")
         with mid_column:
-            st.text("Bathroom, Carpets & Sofa (0%):")
-            st.subheader(f"£7,444.97")
+            st.text("ISA Savings: ")
+            st.subheader(f"£48,215.82")
         with last:
-            st.text("Joint Savings: ")
-            st.subheader(f"£89,768.19")
+            st.text("Other Savings: ")
+            st.subheader(f"£22,612.43")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
