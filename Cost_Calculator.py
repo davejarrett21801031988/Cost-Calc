@@ -18,7 +18,7 @@ from collections import OrderedDict
 from dateutil.relativedelta import *
 import plotly.graph_objects as go
 #import matplotlib.pyplot as plt
-from pywaffle import Waffle
+#from pywaffle import Waffle
 
 if not firebase_admin._apps:
     cred = credentials.Certificate('serviceAK.json')
