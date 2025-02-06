@@ -767,7 +767,7 @@ if authentication_status:
             st.subheader(f"£12,563.81")
         with right_column:
             st.text("Bathroom, Carpets & Sofas (0%):")
-            st.subheader(f"£7032.50")
+            st.subheader(f"£7,032.50")
         with mid_column:
             st.text("ISA Savings: ")
             st.subheader(f"£48,890.10")
