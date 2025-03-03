@@ -767,13 +767,13 @@ if authentication_status:
             st.subheader(f"£12,563.81")
         with right_column:
             st.text("Bathroom, Carpets & Sofas (0%):")
-            st.subheader(f"£7,032.50")
+            st.subheader(f"£6,693.62")
         with mid_column:
             st.text("ISA Savings: ")
-            st.subheader(f"£48,890.10")
+            st.subheader(f"£49,087.76")
         with last:
             st.text("Other Savings: ")
-            st.subheader(f"£21,505.82")
+            st.subheader(f"£21,208.33")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
@@ -782,10 +782,10 @@ if authentication_status:
             st.subheader(f"£151,479.00")
         with right_column:
             st.text("Mortgage:")
-            st.subheader(f"£564,834.38")
+            st.subheader(f"£562,931.28")
         with mid_column:
             st.text("Capital:")
-            st.subheader(f"£535,165.62")
+            st.subheader(f"£537,068.72")
         with last:
             st.text("House Increase:")
             st.subheader(f"£238,000.00")
@@ -862,8 +862,8 @@ if authentication_status:
         st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
         st.markdown("---")
-        st.subheader("Last 10 Transactions")
-        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False).head(10))
+        st.subheader("Last 25 Transactions")
+        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False).head(25))
 
     if selected == "Add Data":
 
