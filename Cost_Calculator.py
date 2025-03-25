@@ -767,7 +767,7 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Dave's Credit Cards (0%):")
-            st.subheader(f"£12,563.81")
+            st.subheader(f"£7,311.83")
         with right_column:
             st.text("Bathroom, Carpets & Sofas (0%):")
             st.subheader(f"£6,693.62")
@@ -776,13 +776,13 @@ if authentication_status:
             st.subheader(f"£49,087.76")
         with last:
             st.text("Other Savings: ")
-            st.subheader(f"£21,208.33")
+            st.subheader(f"£18,494.42")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint Salary:")
-            st.subheader(f"£151,479.00")
+            st.subheader(f"£153,836.00")
         with right_column:
             st.text("Mortgage:")
             st.subheader(f"£562,931.28")
