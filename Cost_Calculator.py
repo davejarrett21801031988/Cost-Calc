@@ -767,16 +767,16 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Dave's Credit Cards (0%):")
-            st.subheader(f"£7,816.58")
+            st.subheader(f"£940.00")
         with right_column:
             st.text("Bathroom, Carpets & Sofas (0%):")
-            st.subheader(f"£6,015.86")
+            st.subheader(f"£5,676.98")
         with mid_column:
             st.text("ISA Savings: ")
-            st.subheader(f"£60,862.39")
+            st.subheader(f"£63,323.52")
         with last:
             st.text("Other Savings: ")
-            st.subheader(f"£9,608.84")
+            st.subheader(f"£200.00")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
@@ -785,10 +785,10 @@ if authentication_status:
             st.subheader(f"£155,266.00")
         with right_column:
             st.text("Mortgage:")
-            st.subheader(f"£559,164.34")
+            st.subheader(f"£557,300.26")
         with mid_column:
             st.text("Capital:")
-            st.subheader(f"£540,835.66")
+            st.subheader(f"£542,699.74")
         with last:
             st.text("House Increase:")
             st.subheader(f"£238,000.00")
