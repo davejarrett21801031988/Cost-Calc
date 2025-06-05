@@ -460,6 +460,10 @@ if authentication_status:
         Average_spend = "£"+"{:,.2f}".format(Average_spend)
         Average_spend = Average_spend+" ("+Average_Spend_Change+") "
 
+
+    # Calculate the 3-month rolling average
+    average_by_month_total['Rolling_Avg'] = average_by_month_total['Amount'].rolling(window=12).mean()
+
     #bar chart
     fig_line = px.bar(
         data_frame = amount_by_month_grouped_2,
@@ -510,6 +514,19 @@ if authentication_status:
         #showlegend=False,
     )
 
+    # Add the rolling average line
+    fig_line.add_scatter(
+        x=average_by_month_total["Period"],
+        y=average_by_month_total["Rolling_Avg"],
+        mode='markers',
+        name='12-Month Rolling Average',
+        line=dict(color='red'),
+    )
+
+    # Format hover text for Amount values as British pounds (£)
+    fig_line.update_traces(
+        hovertemplate='Period: %{x}<br>Amount: £%{y}'
+    )
 
 #    # Get the unique categories from your data
 #    categories = amount_by_month_grouped_notthismonth_pie_4['Category'].unique()
