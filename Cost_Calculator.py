@@ -804,10 +804,10 @@ if authentication_status:
             st.text("Joint Pensions:")
             st.subheader(f"£173,000.00")
         with mid_column:
-            st.text("Capital:")
+            st.text("House Capital:")
             st.subheader(f"£542,699.74")
         with last:
-            st.text("Mortgage:")
+            st.text("Mortgage Remaining:")
             st.subheader(f"£557,300.26")
 
         st.markdown("---")
