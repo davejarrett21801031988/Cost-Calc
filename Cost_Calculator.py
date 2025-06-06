@@ -783,32 +783,32 @@ if authentication_status:
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
-            st.text("Dave's Credit Cards (0%):")
-            st.subheader(f"£940.00")
+            st.text("Joint Salary:")
+            st.subheader(f"£155,266.00")
         with right_column:
             st.text("Bathroom, Carpets & Sofas (0%):")
             st.subheader(f"£5,676.98")
         with mid_column:
-            st.text("Joint ISA Savings: ")
-            st.subheader(f"£63,323.52")
+            st.text("Dave's Credit Cards (0%):")
+            st.subheader(f"£940.00")
         with last:
-            st.text("Joint Other Savings: ")
-            st.subheader(f"£200.00")
+            st.text("Mortgage Remaining:")
+            st.subheader(f"£557,300.26")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
-            st.text("Joint Salary:")
-            st.subheader(f"£155,266.00")
+            st.text("Joint ISA Savings: ")
+            st.subheader(f"£63,323.52")
         with right_column:
+            st.text("Joint Other Savings: ")
+            st.subheader(f"£200.00")
+        with mid_column:
             st.text("Joint Pensions:")
             st.subheader(f"£173,000.00")
-        with mid_column:
+        with last:
             st.text("House Capital:")
             st.subheader(f"£542,699.74")
-        with last:
-            st.text("Mortgage Remaining:")
-            st.subheader(f"£557,300.26")
 
         st.markdown("---")
 
