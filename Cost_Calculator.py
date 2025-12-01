@@ -787,28 +787,28 @@ if authentication_status:
             st.subheader(f"£155,266.00")
         with right_column:
             st.text("Bathroom, Carpets & Sofas (0%):")
-            st.subheader(f"£3,982.68")
+            st.subheader(f"£3,716.35")
         with mid_column:
             st.text("Dave's Credit Cards (0%):")
-            st.subheader(f"£7,207.54")
+            st.subheader(f"£7,113.52")
         with last:
             st.text("Mortgage Remaining:")
-            st.subheader(f"£547,946.01")
+            st.subheader(f"£546,068.36")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint ISA Savings: ")
-            st.subheader(f"£73,277.25")
+            st.subheader(f"£74,143.34")
         with right_column:
             st.text("Joint Other Savings: ")
-            st.subheader(f"£1,600.00")
+            st.subheader(f"£1,900.00")
         with mid_column:
             st.text("Joint Pensions:")
-            st.subheader(f"£206,740.00")
+            st.subheader(f"£208,852.00")
         with last:
             st.text("House Capital:")
-            st.subheader(f"£552,053.99")
+            st.subheader(f"£553,931.64")
 
         st.markdown("---")
 
