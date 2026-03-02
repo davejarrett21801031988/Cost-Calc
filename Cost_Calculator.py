@@ -974,7 +974,7 @@ if authentication_status:
         st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
         st.subheader("Data Table")
-        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
+        st.table((df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False)).head(100))
         #st.markdown("##")
 
 #    if selected == "Modify Data":
