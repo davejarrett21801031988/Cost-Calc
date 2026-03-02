@@ -756,7 +756,7 @@ if authentication_status:
     # --- mainpage ---
     selected = option_menu(
         menu_title = None,
-        options=["Overview","Add Data","Cars"],#,"Modify Data","Mortgage Calculator"],
+        options=["Overview","Add Data"],#,"Modify Data","Cars","Mortgage Calculator"],
         orientation = "horizontal"
     )
 
@@ -1062,68 +1062,68 @@ if authentication_status:
 #        """
 #    st.markdown(hide_st_style, unsafe_allow_html=True)
 #
-    if selected == "Cars":
-
-        # CSS to inject contained in a string
-        hide_table_row_index = """
-                    <style>
-                    tbody th {display:none}
-                    .blank {display:none}
-                    </style>
-                    """
-
-        # Inject CSS with Markdown
-        st.markdown(hide_table_row_index, unsafe_allow_html=True)
-
-        st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
-        st.title(":moneybag: Cost Calculator")
-        st.markdown("##")
-        st.text("Car Mileage and Estimated Value:")
-
-        #save data
-        ref = db.reference('py/')
-        #Cars_ref = ref.child('Cars')
-        #Car = 'Mercedes A45'
-        #Cars_ref.set({
-        #    Car:{
-        #        'Mileage': 44276
-        #    }
-        #})
-
-        def update_mileage():
-           #update data
-            Car = fn_Car
-            #Car = 'Mazda MX-5'
-            car_hopper_ref = ref.child('Cars')
-            car_hopper_ref.update({
-                Car:{
-                    'Mileage': fn_Mileage
-                    #'Mileage': 10000
-                }
-            })
-
-        #st.markdown("##")
-        st.table(cars_3[['Car','Registration','Years','Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Total Cost','Monthly Cost','Estimated/Sold Value','Monthly Cost (after Selling)']])
-        st.write("Link to Mazda CX-5 Prices: [link](https://www.autotrader.co.uk/car-search?postcode=gu273nt&radius=200&make=Mazda&model=CX-5&include-delivery-option=on&maximum-mileage=30000&transmission=Manual&fuel-type=Petrol&year-from=2018&year-to=2018&advertising-location=at_cars&page=1)")
-        st.write("Link to Peugeot 308 Prices: [link](https://www.autotrader.co.uk/car-search?postcode=gu273nt&radius=200&make=Peugeot&model=308&include-delivery-option=on&maximum-mileage=70000&transmission=Manual&fuel-type=Diesel&year-from=2015&year-to=2015&advertising-location=at_cars&page=1)")
-        st.markdown("---")
-        st.text("Update Mileage:")
-
-        col_0, col_1 = st.columns(2)
-        with col_0:
-            fn_Car = st.selectbox("Car",["Mazda CX-5","Peugeot 308","Mercedes A45","Mazda MX-5","VW Polo"], key = "Car")
-        with col_1:
-            fn_Mileage = st.text_input("Mileage", key = "Mileage")
-
-        fn_submit = st.button("Submit", on_click = update_mileage)
-
-        st.markdown("---")
-        st.text("Car Costs:")
-            #print(df_selection_cars)
-            #st.text("...")
-            #df_selection_cars = df_selection_cars[['Date','Car','Item','Amount Spent']].sort_values(by=['Date'], ascending=False)
-        st.table(amount_by_month_cars_600_adj)
-
+#    if selected == "Cars":
+#
+#        # CSS to inject contained in a string
+#        hide_table_row_index = """
+#                    <style>
+#                    tbody th {display:none}
+#                    .blank {display:none}
+#                    </style>
+#                    """
+#
+#        # Inject CSS with Markdown
+#        st.markdown(hide_table_row_index, unsafe_allow_html=True)
+#
+#        st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
+#        st.title(":moneybag: Cost Calculator")
+#        st.markdown("##")
+#        st.text("Car Mileage and Estimated Value:")
+#
+#        #save data
+#        ref = db.reference('py/')
+#        #Cars_ref = ref.child('Cars')
+#        #Car = 'Mercedes A45'
+#        #Cars_ref.set({
+#        #    Car:{
+#        #        'Mileage': 44276
+#        #    }
+#        #})
+#
+#        def update_mileage():
+#           #update data
+#            Car = fn_Car
+#            #Car = 'Mazda MX-5'
+#            car_hopper_ref = ref.child('Cars')
+#            car_hopper_ref.update({
+#                Car:{
+#                    'Mileage': fn_Mileage
+#                    #'Mileage': 10000
+#                }
+#            })
+#
+#        #st.markdown("##")
+#        st.table(cars_3[['Car','Registration','Years','Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Total Cost','Monthly Cost','Estimated/Sold Value','Monthly Cost (after Selling)']])
+#        st.write("Link to Mazda CX-5 Prices: [link](https://www.autotrader.co.uk/car-search?postcode=gu273nt&radius=200&make=Mazda&model=CX-5&include-delivery-option=on&maximum-mileage=30000&transmission=Manual&fuel-type=Petrol&year-from=2018&year-to=2018&advertising-location=at_cars&page=1)")
+#        st.write("Link to Peugeot 308 Prices: [link](https://www.autotrader.co.uk/car-search?postcode=gu273nt&radius=200&make=Peugeot&model=308&include-delivery-option=on&maximum-mileage=70000&transmission=Manual&fuel-type=Diesel&year-from=2015&year-to=2015&advertising-location=at_cars&page=1)")
+#        st.markdown("---")
+#        st.text("Update Mileage:")
+#
+#        col_0, col_1 = st.columns(2)
+#        with col_0:
+#            fn_Car = st.selectbox("Car",["Mazda CX-5","Peugeot 308","Mercedes A45","Mazda MX-5","VW Polo"], key = "Car")
+#        with col_1:
+#            fn_Mileage = st.text_input("Mileage", key = "Mileage")
+#
+#        fn_submit = st.button("Submit", on_click = update_mileage)
+#
+#        st.markdown("---")
+#        st.text("Car Costs:")
+#            #print(df_selection_cars)
+#            #st.text("...")
+#            #df_selection_cars = df_selection_cars[['Date','Car','Item','Amount Spent']].sort_values(by=['Date'], ascending=False)
+#        st.table(amount_by_month_cars_600_adj)
+#
     # if selected == "Mortgage Calculator":
     #
     #     st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
