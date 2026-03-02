@@ -756,7 +756,7 @@ if authentication_status:
     # --- mainpage ---
     selected = option_menu(
         menu_title = None,
-        options=["Overview","Add Data","Modify Data","Cars"],#,"Mortgage Calculator"],
+        options=["Overview","Add Data","Cars"],#,"Modify Data","Mortgage Calculator"],
         orientation = "horizontal"
     )
 
@@ -784,31 +784,31 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint Salary:")
-            st.subheader(f"£155,266.00")
+            st.subheader(f"£158,634.00")
         with right_column:
             st.text("Bathroom, Carpets & Sofa (0%):")
-            st.subheader(f"£3,183.69")
+            st.subheader(f"£2,917.36")
         with mid_column:
             st.text("Dave's Credit Card (0%):")
-            st.subheader(f"£6,927.42")
+            st.subheader(f"£6,835.33")
         with last:
             st.text("Mortgage Remaining:")
-            st.subheader(f"£542,306.23")
+            st.subheader(f"£540,421.75")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint ISA Savings: ")
-            st.subheader(f"£74,503.81")
+            st.subheader(f"£74,527.12")
         with right_column:
             st.text("Joint Other Savings: ")
-            st.subheader(f"£6,222.12")
+            st.subheader(f"£10,342.80")
         with mid_column:
             st.text("Joint Pensions:")
-            st.subheader(f"£215,715.89")
+            st.subheader(f"£233,008.89")
         with last:
             st.text("House Capital:")
-            st.subheader(f"£557,693.77")
+            st.subheader(f"£559,578.25")
 
         st.markdown("---")
 
@@ -977,91 +977,91 @@ if authentication_status:
         st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
         #st.markdown("##")
 
-    if selected == "Modify Data":
-
-        st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
-        st.title(":moneybag: Cost Calculator")
-        st.markdown("##")
-        st.text("To modify existing data, make sure that the Transaction_ID matches exactly. Make the changes and click 'Submit'.")
-
-        col_0, col_1, col_2, col_3, col_4, col_5 = st.columns(6)
-        with col_0:
-            fn_Transaction_ID = st.text_input("Transaction_ID", key = "Transaction_ID")
-        with col_1:
-            fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
-        with col_2:
-            fn_Category = st.selectbox("Category",["","Baby","Balancing Figure","Cars","Cats","Childcare","Dog","Drinks","Extension","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
-        with col_3:
-            if fn_Category == "House Bills":
-                fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","Spotify","TV Licence","Water"], key = "Item")
-            else:
-                if fn_Category == "Cars":
-                    fn_Item = st.selectbox("Item",["","Peugeot 308 - Insurance","Peugeot 308 - Payments","Peugeot 308 - Recovery","Peugeot 308 - Servicing and Fixes","Peugeot 308 - Tax","Mazda CX-5 - Insurance","Mazda CX-5 - Payments","Mazda CX-5 - Recovery","Mazda CX-5 - Servicing and Fixes","Mazda CX-5 - Tax"], key = "Item")
-                else:
-                    fn_Item = st.text_input("Item", key = "Item")
-        with col_4:
-            fn_Amount = st.text_input("Amount (£)", key = "Amount")
-        with col_5:
-            fn_Percentage_Split = st.number_input("Percentage Split (%) (Dave)", value = 50, key = "Percentage_Split")
-        st.markdown("##")
-
-        def clear_text():
-            st.session_state["Transaction_ID"] = ""
-            st.session_state["Amount"] = ""
-            st.session_state["Item"] = ""
-            st.session_state["Who"] = ""
-            st.session_state["Category"] = ""
-
-        ref = db.reference('py/')
-        def update_data():
-            #update data
-            transaction_ID = fn_Transaction_ID
-            hopper_ref = ref.child('Transactions')
-            hopper_ref.update({
-                transaction_ID:{
-                    'Item': fn_Item,
-                    'Amount': fn_Amount,
-                    'Who': fn_Who,
-                    'Category': fn_Category,
-                    'Percentage_Split': fn_Percentage_Split,
-                }
-            })
-            clear_text()
-
-        a, b, c, d, e, f, g, h, col_4, col_5 = st.columns(10)
-        with col_4:
-            fn_submit = st.button("Submit", on_click = update_data)
-        with col_5:
-            fn_clear = st.button("Clear", on_click = clear_text)
-        #st.markdown("##")
-        st.markdown("---")
-
-        #print(fn_Amount)
-        #print(fn_Item)
-
-        # CSS to inject contained in a string
-        hide_table_row_index = """
-                    <style>
-                    tbody th {display:none}
-                    .blank {display:none}
-                    </style>
-                    """
-
-        # Inject CSS with Markdown
-        st.markdown(hide_table_row_index, unsafe_allow_html=True)
-
-        st.subheader("Data Table")
-        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
-        #st.markdown("##")
-
-    hide_st_style = """
-        <style>
-        #MainMenu {visibility: hidden}
-        footer {visibility: hidden}
-        </style>
-        """
-    st.markdown(hide_st_style, unsafe_allow_html=True)
-
+#    if selected == "Modify Data":
+#
+#        st.markdown(f"<div id='linkto_{0}'></div>", unsafe_allow_html=True)
+#        st.title(":moneybag: Cost Calculator")
+#        st.markdown("##")
+#        st.text("To modify existing data, make sure that the Transaction_ID matches exactly. Make the changes and click 'Submit'.")
+#
+#        col_0, col_1, col_2, col_3, col_4, col_5 = st.columns(6)
+#        with col_0:
+#            fn_Transaction_ID = st.text_input("Transaction_ID", key = "Transaction_ID")
+#        with col_1:
+#            fn_Who = st.selectbox("Who",["","Niki","Dave","Credit Card"], key = "Who")
+#        with col_2:
+#            fn_Category = st.selectbox("Category",["","Baby","Balancing Figure","Cars","Cats","Childcare","Dog","Drinks","Extension","Food","Fuel","Fun","Guildford Flat","House Bills","House Stuff","Mortgage Interest","Mortgage Capital","Other Bills"], key = "Category")
+#        with col_3:
+#            if fn_Category == "House Bills":
+#                fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","Spotify","TV Licence","Water"], key = "Item")
+#            else:
+#                if fn_Category == "Cars":
+#                    fn_Item = st.selectbox("Item",["","Peugeot 308 - Insurance","Peugeot 308 - Payments","Peugeot 308 - Recovery","Peugeot 308 - Servicing and Fixes","Peugeot 308 - Tax","Mazda CX-5 - Insurance","Mazda CX-5 - Payments","Mazda CX-5 - Recovery","Mazda CX-5 - Servicing and Fixes","Mazda CX-5 - Tax"], key = "Item")
+#                else:
+#                    fn_Item = st.text_input("Item", key = "Item")
+#        with col_4:
+#            fn_Amount = st.text_input("Amount (£)", key = "Amount")
+#        with col_5:
+#            fn_Percentage_Split = st.number_input("Percentage Split (%) (Dave)", value = 50, key = "Percentage_Split")
+#        st.markdown("##")
+#
+#        def clear_text():
+#            st.session_state["Transaction_ID"] = ""
+#            st.session_state["Amount"] = ""
+#            st.session_state["Item"] = ""
+#            st.session_state["Who"] = ""
+#            st.session_state["Category"] = ""
+#
+#        ref = db.reference('py/')
+#        def update_data():
+#            #update data
+#            transaction_ID = fn_Transaction_ID
+#            hopper_ref = ref.child('Transactions')
+#            hopper_ref.update({
+#                transaction_ID:{
+#                    'Item': fn_Item,
+#                    'Amount': fn_Amount,
+#                    'Who': fn_Who,
+#                    'Category': fn_Category,
+#                    'Percentage_Split': fn_Percentage_Split,
+#                }
+#            })
+#            clear_text()
+#
+#        a, b, c, d, e, f, g, h, col_4, col_5 = st.columns(10)
+#        with col_4:
+#            fn_submit = st.button("Submit", on_click = update_data)
+#        with col_5:
+#            fn_clear = st.button("Clear", on_click = clear_text)
+#        #st.markdown("##")
+#        st.markdown("---")
+#
+#        #print(fn_Amount)
+#        #print(fn_Item)
+#
+#        # CSS to inject contained in a string
+#        hide_table_row_index = """
+#                    <style>
+#                    tbody th {display:none}
+#                    .blank {display:none}
+#                    </style>
+#                    """
+#
+#        # Inject CSS with Markdown
+#        st.markdown(hide_table_row_index, unsafe_allow_html=True)
+#
+#        st.subheader("Data Table")
+#        st.table(df_selection_999[['Transaction_ID','Date','Item','Amount Spent','Who','Category','Percentage Split (Dave)']].sort_values(by=['Date'], ascending=False))
+#        #st.markdown("##")
+#
+#    hide_st_style = """
+#        <style>
+#        #MainMenu {visibility: hidden}
+#        footer {visibility: hidden}
+#        </style>
+#        """
+#    st.markdown(hide_st_style, unsafe_allow_html=True)
+#
     if selected == "Cars":
 
         # CSS to inject contained in a string
