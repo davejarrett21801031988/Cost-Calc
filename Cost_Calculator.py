@@ -799,13 +799,13 @@ if authentication_status:
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint ISA Savings: ")
-            st.subheader(f"£79,837.99")
+            st.subheader(f"95,406.69")
         with right_column:
             st.text("Joint Other Savings: ")
-            st.subheader(f"£18,319.13")
+            st.subheader(f"£3,520.13")
         with mid_column:
             st.text("Joint Pensions:")
-            st.subheader(f"£241,655.00")
+            st.subheader(f"£254,334.00")
         with last:
             st.text("House Capital:")
             st.subheader(f"£565,245.43")
