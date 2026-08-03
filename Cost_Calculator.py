@@ -653,7 +653,7 @@ if authentication_status:
 #   print(cars_1['Purchase Days Orig'])
     cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
     cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].str.split(' ').str[0].astype(int))/30.42
-    cars_1['Starting Mileage (Us)'] = [79274,5,32460,11996,20000,23016]
+    cars_1['Starting Mileage (Us)'] = [79275,5,32460,11996,20000,23016]
     cars_1 = cars_1.merge(df2_car, on='Car', how='left')
     cars_1['Mileage'] = cars_1['Mileage'].astype(int)
     cars_1['Our Mileage'] = cars_1['Mileage'] - cars_1['Starting Mileage (Us)']
@@ -690,10 +690,10 @@ if authentication_status:
     amount_by_month_cars_5_adj_MX5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
     amount_by_month_cars_5_adj_MX5['Adj_Amount'] = [16599.76,34.67,882.5,1449.78,1846.16]
 
-    amount_by_month_cars_5_adj_MX5 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
-    amount_by_month_cars_5_adj_MX5['Car'] = ['Audi RS6','Audi RS6','Audi RS6','Audi RS6','Audi RS6']
-    amount_by_month_cars_5_adj_MX5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
-    amount_by_month_cars_5_adj_MX5['Adj_Amount'] = [0,0,0,0,0]
+    amount_by_month_cars_5_adj_RS6 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
+    amount_by_month_cars_5_adj_RS6['Car'] = ['Audi RS6','Audi RS6','Audi RS6','Audi RS6','Audi RS6']
+    amount_by_month_cars_5_adj_RS6['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
+    amount_by_month_cars_5_adj_RS6['Adj_Amount'] = [0,0,0,0,0]
 
     amount_by_month_cars_5_adj_Polo = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
     amount_by_month_cars_5_adj_Polo['Car'] = ['VW Polo','VW Polo','VW Polo','VW Polo','VW Polo']
@@ -704,7 +704,7 @@ if authentication_status:
     amount_by_month_cars_5_adj_cx5['Car'] = ['Mazda CX-5','Mazda CX-5','Mazda CX-5','Mazda CX-5','Mazda CX-5']
     amount_by_month_cars_5_adj_cx5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
     amount_by_month_cars_5_adj_cx5['Adj_Amount'] = [29021.28,0,655,1163.78,664.02]
-    amount_by_month_cars_6_adj = pd.concat([amount_by_month_cars_5_adj_cx5, amount_by_month_cars_5_adj_308, amount_by_month_cars_5_adj_A45, amount_by_month_cars_5_adj_MX5, amount_by_month_cars_5_adj_Polo], ignore_index=True)
+    amount_by_month_cars_6_adj = pd.concat([amount_by_month_cars_5_adj_cx5, amount_by_month_cars_5_adj_308, amount_by_month_cars_5_adj_A45, amount_by_month_cars_5_adj_MX5, amount_by_month_cars_5_adj_Polo, amount_by_month_cars_5_adj_RS6], ignore_index=True)
 
     options_cars = ['Cars']
     df_selection_cars = df_selection[df_selection["Category"].isin(options_cars)]
@@ -712,6 +712,7 @@ if authentication_status:
     df_selection_cars['Sub-Category'] = ''
     df_selection_cars.loc[df_selection_cars['Item'].str.contains('Peugeot')==True , 'Car'] = 'Peugeot 308'
     df_selection_cars.loc[df_selection_cars['Item'].str.contains('Mazda')==True , 'Car'] = 'Mazda CX-5'
+    df_selection_cars.loc[df_selection_cars['Item'].str.contains('Audi')==True , 'Car'] = 'Audi RS6'
     df_selection_cars.loc[df_selection_cars['Item'].str.contains('Payments')==True , 'Sub-Category'] = 'Payments'
     df_selection_cars.loc[df_selection_cars['Item'].str.contains('Recovery')==True , 'Sub-Category'] = 'Recovery'
     df_selection_cars.loc[df_selection_cars['Item'].str.contains('Tax')==True , 'Sub-Category'] = 'Tax'
@@ -735,6 +736,7 @@ if authentication_status:
     amount_by_month_cars_600_adj["Peugeot 308"] = amount_by_month_cars_600_adj["Peugeot 308"].map('£{:,.2f}'.format)
     amount_by_month_cars_600_adj["Mercedes A45"] = amount_by_month_cars_600_adj["Mercedes A45"].map('£{:,.2f}'.format)
     amount_by_month_cars_600_adj["VW Polo"] = amount_by_month_cars_600_adj["VW Polo"].map('£{:,.2f}'.format)
+    amount_by_month_cars_600_adj["Audi RS6"] = amount_by_month_cars_600_adj["Audi RS6"].map('£{:,.2f}'.format)
         #print(amount_by_month_cars_600_adj)
 
     amount_by_month_cars_7_adj = (
@@ -908,7 +910,7 @@ if authentication_status:
                 fn_Item = st.selectbox("Item",["","Amazon Prime","BT Sport","Building & Contents Insurance","Cashback","Council Tax","Firelighters and Wood","Gas & Electricity","Internet","Netflix","Ring","Road Fund","Spotify","TV Licence","Water"], key = "Item")
             else:
                 if fn_Category == "Cars":
-                    fn_Item = st.selectbox("Item",["","Peugeot 308 - Insurance","Peugeot 308 - Payments","Peugeot 308 - Recovery","Peugeot 308 - Servicing and Fixes","Peugeot 308 - Tax","Mazda CX-5 - Insurance","Mazda CX-5 - Payments","Mazda CX-5 - Recovery","Mazda CX-5 - Servicing and Fixes","Mazda CX-5 - Tax"], key = "Item")
+                    fn_Item = st.selectbox("Item",["","Peugeot 308 - Insurance","Peugeot 308 - Payments","Peugeot 308 - Recovery","Peugeot 308 - Servicing and Fixes","Peugeot 308 - Tax","Mazda CX-5 - Insurance","Mazda CX-5 - Payments","Mazda CX-5 - Recovery","Mazda CX-5 - Servicing and Fixes","Mazda CX-5 - Tax","Audi RS6 - Insurance","Audi RS6 - Payments","Audi RS6 - Recovery","Audi RS6 - Servicing and Fixes","Audi RS6 - Tax"], key = "Item")
                 else:
                     fn_Item = st.text_input("Item", key = "Item")
         with col_4:
