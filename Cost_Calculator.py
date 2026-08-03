@@ -632,11 +632,11 @@ if authentication_status:
     #print(df3_car)
 
     cars_1 = pd.DataFrame(columns=['Car','Registration','Registered Date','Purchase Date','Purchase Days','Registered Days','Starting Mileage (Us)','Our Mileage','Annual Mileage (Us)','Annual Mileage (Total)','Estimated Value','Today'])
-    cars_1['Car'] = ['Mazda CX-5','Peugeot 308','Mercedes A45','Mazda MX-5','VW Polo']
-    cars_1['Registration'] = ['HT68 JZR','EF15 UAC','HF64 PWX','HN13 LZW','RV60 VWD']
-    cars_1['Registered Date'] = [date(2019,1,26),date(2015,6,19),date(2014,9,26),date(2013,6,30),date(2010,9,4)]
-    cars_1['Purchase Date'] = [date(2019,1,26),date(2019,2,1),date(2016,12,13),date(2015,6,13),date(2013,9,14)]
-    cars_1['Today'] = [date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
+    cars_1['Car'] = ['Audi RS6','Mazda CX-5','Peugeot 308','Mercedes A45','Mazda MX-5','VW Polo']
+    cars_1['Registration'] = ['KN14 UGH','HT68 JZR','EF15 UAC','HF64 PWX','HN13 LZW','RV60 VWD']
+    cars_1['Registered Date'] = [date(2014,4,1),date(2019,1,26),date(2015,6,19),date(2014,9,26),date(2013,6,30),date(2010,9,4)]
+    cars_1['Purchase Date'] = [date(2026,7,29),date(2019,1,26),date(2019,2,1),date(2016,12,13),date(2015,6,13),date(2013,9,14)]
+    cars_1['Today'] = [date.today(),date.today(),date.today(),date(2019,1,26),date(2019,2,1),date(2016,12,13)]
     cars_1['Registered Days'] = cars_1['Today'] - cars_1['Registered Date']
 #   print('------------------------NEW ROW---------------------------------')
 #   print(cars_1['Registered Days'].dtype)
@@ -653,13 +653,13 @@ if authentication_status:
 #   print(cars_1['Purchase Days Orig'])
     cars_1['Years'] = cars_1['Purchase Days'].map('{:,.1f}'.format)
     cars_1['Purchase Months'] = (cars_1['Purchase Days Orig'].str.split(' ').str[0].astype(int))/30.42
-    cars_1['Starting Mileage (Us)'] = [5,32460,11996,20000,23016]
+    cars_1['Starting Mileage (Us)'] = [79274,5,32460,11996,20000,23016]
     cars_1 = cars_1.merge(df2_car, on='Car', how='left')
     cars_1['Mileage'] = cars_1['Mileage'].astype(int)
     cars_1['Our Mileage'] = cars_1['Mileage'] - cars_1['Starting Mileage (Us)']
     cars_1['Annual Mileage (Us)'] = cars_1['Our Mileage'] / cars_1['Purchase Days']
     cars_1['Annual Mileage (Total)'] = cars_1['Mileage'] / cars_1['Registered Days']
-    cars_1['Estimated/Sold Value'] = [18000,5000,1778.04,6800,3000]
+    cars_1['Estimated/Sold Value'] = [25000,18000,5000,1778.04,6800,3000]
     cars_1['Annual Mileage (Total)'] = cars_1['Annual Mileage (Total)'].map('{:,.1f}'.format)
     cars_1['Annual Mileage (Us)'] = cars_1['Annual Mileage (Us)'].map('{:,.1f}'.format)
     cars_1['Mileage'] = cars_1['Mileage'].map('{:,.1f}'.format)
@@ -689,6 +689,11 @@ if authentication_status:
     amount_by_month_cars_5_adj_MX5['Car'] = ['Mazda MX-5','Mazda MX-5','Mazda MX-5','Mazda MX-5','Mazda MX-5']
     amount_by_month_cars_5_adj_MX5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
     amount_by_month_cars_5_adj_MX5['Adj_Amount'] = [16599.76,34.67,882.5,1449.78,1846.16]
+
+    amount_by_month_cars_5_adj_MX5 = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
+    amount_by_month_cars_5_adj_MX5['Car'] = ['Audi RS6','Audi RS6','Audi RS6','Audi RS6','Audi RS6']
+    amount_by_month_cars_5_adj_MX5['Sub-Category'] = ['Payments','Recovery','Tax','Insurance','Servicing and Fixes']
+    amount_by_month_cars_5_adj_MX5['Adj_Amount'] = [0,0,0,0,0]
 
     amount_by_month_cars_5_adj_Polo = pd.DataFrame(columns=['Car','Item','Adj_Amount'])
     amount_by_month_cars_5_adj_Polo['Car'] = ['VW Polo','VW Polo','VW Polo','VW Polo','VW Polo']
@@ -787,28 +792,28 @@ if authentication_status:
             st.subheader(f"£160,979.00")
         with right_column:
             st.text("Bathroom, Carpets & Sofa (0%):")
-            st.subheader(f"£2,118.37")
+            st.subheader(f"£1,585.99")
         with mid_column:
             st.text("Dave's Credit Card (0%):")
-            st.subheader(f"£6,562.83")
+            st.subheader(f"£7,541.9")
         with last:
             st.text("Mortgage Remaining:")
-            st.subheader(f"£534,754.57")
+            st.subheader(f"£530,964.96")
         #st.markdown("##")
 
         left_column, right_column, mid_column, last = st.columns(4)
         with left_column:
             st.text("Joint ISA Savings: ")
-            st.subheader(f"£95,406.69")
+            st.subheader(f"£97,362.43")
         with right_column:
             st.text("Joint Other Savings: ")
-            st.subheader(f"£3,520.13")
+            st.subheader(f"£3,601.13")
         with mid_column:
             st.text("Joint Pensions:")
-            st.subheader(f"£254,334.00")
+            st.subheader(f"£257,828.00")
         with last:
             st.text("House Capital:")
-            st.subheader(f"£565,245.43")
+            st.subheader(f"£569,035.04")
 
         st.markdown("---")
 
